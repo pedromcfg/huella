@@ -93,7 +93,7 @@ async function renderHomePage(data) {
                         </div>
                     </div>
                     <div class="col-lg-6 text-center">
-                        <img src="public/img/cookies/cookies/Tradicional/1.jpg" alt="Cookies Huella" class="img-fluid huella-fade-in" style="max-height: 500px;">
+                        <img src="public/img/cookies/cookies/Tradicional/1.jpg" alt="Cookies Huella" class="img-fluid huella-fade-in" style="max-height: 500px; border-radius: 15px;">
                     </div>
                 </div>
             </div>
@@ -188,12 +188,9 @@ async function renderAboutPage(data) {
         <section class="huella-hero">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 text-center">
                         <h1 class="huella-fade-in">Os Meus Valores</h1>
                         <p class="lead huella-fade-in">Conheça a história por trás da Huella e os valores que guiam cada receita, cada ingrediente e cada decisão.</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img src="public/img/about/values-hero.jpg" alt="Os Meus Valores" class="img-fluid huella-fade-in" style="max-height: 400px;">
                     </div>
                 </div>
             </div>
@@ -385,12 +382,9 @@ async function renderCookiesPage(data) {
         <section class="huella-hero">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 text-center">
                         <h1 class="huella-fade-in">Os Nossos Cookies</h1>
                         <p class="lead huella-fade-in">Descubra a nossa coleção de sabores únicos, desde os clássicos que todos adoram até às criações mais inovadoras.</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img src="public/img/cookies/cookies/Tradicional/1.jpg" alt="Cookies Huella" class="img-fluid huella-fade-in" style="max-height: 400px;">
                     </div>
                 </div>
             </div>
@@ -478,12 +472,9 @@ async function renderLocationPage(data) {
         <section class="huella-hero">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 text-center">
                         <h1 class="huella-fade-in">Onde Estamos</h1>
                         <p class="lead huella-fade-in">Visite-nos na nossa loja em São Mamede Infesta, Matosinhos e descubra o sabor dos nossos cookies frescos.</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img src="public/img/location/store-front.jpg" alt="Loja Huella" class="img-fluid huella-fade-in" style="max-height: 400px;">
                     </div>
                 </div>
             </div>
@@ -622,12 +613,9 @@ async function renderContactPage(data) {
         <section class="huella-hero">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 text-center">
                         <h1 class="huella-fade-in">Contactos</h1>
                         <p class="lead huella-fade-in">Estamos aqui para si! Entre em contacto connosco para qualquer dúvida, sugestão ou encomenda especial.</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img src="public/img/contact/contact-hero.jpg" alt="Contactos Huella" class="img-fluid huella-fade-in" style="max-height: 400px;">
                     </div>
                 </div>
             </div>
@@ -1117,12 +1105,9 @@ async function renderFAQPage(data) {
         <section class="huella-hero">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 text-center">
                         <h1 class="huella-fade-in">Perguntas Frequentes</h1>
                         <p class="lead huella-fade-in">Encontre respostas às questões mais comuns sobre os nossos cookies, encomendas e serviços.</p>
-                    </div>
-                    <div class="col-lg-6 text-center">
-                        <img src="public/img/faq/faq-hero.jpg" alt="FAQ Huella" class="img-fluid huella-fade-in" style="max-height: 400px;">
                     </div>
                 </div>
             </div>
