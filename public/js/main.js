@@ -28,6 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // ===== CLOSE OFFCANVAS MENU ON LINK CLICK =====
+    const offcanvasMenu = document.getElementById('offcanvasMenu');
+    if (offcanvasMenu) {
+        // Fechar menu quando um link é clicado (com animação suave)
+        offcanvasMenu.addEventListener('click', function(e) {
+            const link = e.target.closest('.nav-link[data-route]');
+            if (link) {
+                // Pequeno delay para permitir que o clique seja processado primeiro
+                setTimeout(() => {
+                    // Usar Bootstrap API para fechar o offcanvas com animação
+                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasMenu);
+                    if (bsOffcanvas) {
+                        bsOffcanvas.hide();
+                    } else {
+                        // Se não existe instância, criar uma nova e fechar
+                        const newOffcanvas = new bootstrap.Offcanvas(offcanvasMenu);
+                        newOffcanvas.hide();
+                    }
+                }, 50);
+            }
+        });
+    }
+    
     // ===== CART FUNCTIONALITY =====
     let cart = JSON.parse(localStorage.getItem('huellaCart')) || [];
     updateCartCount();

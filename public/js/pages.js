@@ -84,7 +84,7 @@ async function renderHomePage(data) {
                         <h1 class="huella-fade-in">Cookies Artesanais "sin Huella"</h1>
                         <p class="lead huella-fade-in">Mais do que cookies, são uma obra de arte feita à mão, sem ingredientes de origens animal. Descobre os sabores únicos que podes partilhar.</p>
                         <div class="d-flex gap-3 huella-fade-in">
-                            <a href="#" data-route="/loja" class="btn btn-huella-primary btn-lg">
+                            <a href="#" data-route="/cookies" class="btn btn-huella-primary btn-lg">
                                 <i class="fas fa-shopping-cart me-2"></i>Encomenda Já
                             </a>
                             <a href="#" data-route="/cookies" class="btn btn-huella-outline btn-lg">
@@ -272,7 +272,7 @@ async function renderAboutPage(data) {
                         <h2 class="text-white mb-3">Faça Parte da Nossa História</h2>
                         <p class="text-white-50 mb-4">Junte-se a quem já descobriu o sabor único dos nossos cookies artesanais veganos.</p>
                         <div class="d-flex gap-3 justify-content-center">
-                            <a href="#" data-route="/loja" class="btn btn-light btn-lg">
+                            <a href="#" data-route="/cookies" class="btn btn-light btn-lg">
                                 <i class="fas fa-shopping-cart me-2"></i>Encomendar Agora
                             </a>
                             <a href="#" data-route="/contactos" class="btn btn-outline-light btn-lg">
@@ -449,7 +449,7 @@ async function renderCookiesPage(data) {
                         <h2 class="text-white mb-3">Pronto para Experimentar?</h2>
                         <p class="text-white-50 mb-4">Escolha os seus sabores favoritos e receba cookies frescos em casa</p>
                         <div class="d-flex gap-3 justify-content-center">
-                            <a href="#" data-route="/loja" class="btn btn-light btn-lg">
+                            <a href="#" data-route="/cookies" class="btn btn-light btn-lg">
                                 <i class="fas fa-shopping-cart me-2"></i>Encomendar Agora
                             </a>
                             <a href="#" data-route="/contactos" class="btn btn-outline-light btn-lg">
@@ -467,7 +467,11 @@ async function renderCookiesPage(data) {
 async function renderLocationPage(data) {
     const address = data.site.address;
     const contact = data.site.contact;
-    const mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.123456789!2d-9.139123456789!3d38.7123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQyJzQ0LjQiTiA5wrAwOCcyMC44Ilc!5e0!3m2!1spt!2spt!4v1234567890123!5m2!1spt!2spt';
+    // Construir endereço completo para o mapa
+    const fullAddress = `${address.street}, ${address.postalCode} ${address.city}, ${address.country}`;
+    // Usar formato simples do Google Maps que funciona sem API key
+    // Este formato usa a pesquisa do Google Maps e converte para embed
+    const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
     return `
         <!-- Hero Section -->
@@ -535,7 +539,7 @@ async function renderLocationPage(data) {
                                 <h3 class="card-title text-huella-green mb-4">
                                     <i class="fas fa-map me-2"></i>Localização
                                 </h3>
-                                <div class="map-container" style="height: 300px; border-radius: 10px; overflow: hidden;">
+                                <div class="map-container" style="height: 300px; border-radius: 10px; overflow: hidden; position: relative;">
                                     <iframe 
                                         src="${mapEmbed}" 
                                         width="100%" 
@@ -543,11 +547,12 @@ async function renderLocationPage(data) {
                                         style="border:0;" 
                                         allowfullscreen="" 
                                         loading="lazy" 
-                                        referrerpolicy="no-referrer-when-downgrade">
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        frameborder="0">
                                     </iframe>
                                 </div>
                                 <div class="mt-3">
-                                    <a href="https://maps.google.com/?q=${encodeURIComponent(address.street + ', ' + address.city)}" target="_blank" class="btn btn-huella-primary">
+                                    <a href="https://maps.google.com/?q=${encodeURIComponent(fullAddress)}" target="_blank" class="btn btn-huella-primary">
                                         <i class="fas fa-directions me-2"></i>Obter Direções
                                     </a>
                                 </div>
@@ -566,7 +571,7 @@ async function renderLocationPage(data) {
                         <h2 class="text-white mb-3">Visite-nos Hoje!</h2>
                         <p class="text-white-50 mb-4">Venha conhecer o sabor único dos nossos cookies frescos e a nossa equipa acolhedora.</p>
                         <div class="d-flex gap-3 justify-content-center">
-                            <a href="https://maps.google.com/?q=${encodeURIComponent(address.street + ', ' + address.city)}" target="_blank" class="btn btn-light btn-lg">
+                            <a href="https://maps.google.com/?q=${encodeURIComponent(fullAddress)}" target="_blank" class="btn btn-light btn-lg">
                                 <i class="fas fa-directions me-2"></i>Obter Direções
                             </a>
                             <a href="#" data-route="/contactos" class="btn btn-outline-light btn-lg">
@@ -767,7 +772,7 @@ async function renderContactPage(data) {
                             <div class="card-body p-0">
                                 <div class="map-container" style="height: 400px; border-radius: 10px; overflow: hidden;">
                                     <iframe 
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.123456789!2d-9.139123456789!3d38.7123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQyJzQ0LjQiTiA5wrAwOCcyMC44Ilc!5e0!3m2!1spt!2spt!4v1234567890123!5m2!1spt!2spt" 
+                                        src="${mapEmbed}" 
                                         width="100%" 
                                         height="100%" 
                                         style="border:0;" 
@@ -789,9 +794,9 @@ async function renderContactPage(data) {
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
                         <h2 class="text-white mb-3">Pronto para Encomendar?</h2>
-                        <p class="text-white-50 mb-4">Visite a nossa loja online e descubra todos os sabores disponíveis.</p>
+                        <p class="text-white-50 mb-4">Descubra todos os sabores disponíveis e escolha os seus favoritos.</p>
                         <div class="d-flex gap-3 justify-content-center">
-                            <a href="#" data-route="/loja" class="btn btn-light btn-lg">
+                            <a href="#" data-route="/cookies" class="btn btn-light btn-lg">
                                 <i class="fas fa-shopping-cart me-2"></i>Encomendar Agora
                             </a>
                             <a href="tel:${contactInfo.contact.phone}" class="btn btn-outline-light btn-lg">
@@ -1148,16 +1153,6 @@ async function renderReviewsPage(data) {
     `;
 }
 
-// Renderizar Packaging Page (simplificado)
-async function renderPackagingPage(data) {
-    return `
-        <div class="container py-5">
-            <h1>Embalagem Sustentável</h1>
-            <p>Esta página será implementada em breve.</p>
-        </div>
-    `;
-}
-
 // Renderizar 404 Page
 async function render404Page() {
     return `
@@ -1182,7 +1177,6 @@ if (typeof module !== 'undefined' && module.exports) {
         renderShopPage,
         renderFAQPage,
         renderReviewsPage,
-        renderPackagingPage,
         render404Page
     };
 }

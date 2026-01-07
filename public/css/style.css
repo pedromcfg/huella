@@ -92,6 +92,18 @@ body {
 }
 
 /* ===== OFFCANVAS MENU STYLES ===== */
+.offcanvas {
+    transition: transform 0.3s ease-in-out !important;
+}
+
+.offcanvas.showing {
+    transition: transform 0.3s ease-in-out !important;
+}
+
+.offcanvas-backdrop {
+    transition: opacity 0.3s ease-in-out !important;
+}
+
 .huella-offcanvas-header {
     background-color: var(--huella-green);
     color: var(--huella-white);

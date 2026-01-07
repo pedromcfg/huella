@@ -276,7 +276,7 @@ const SITE_DATA = {
   "faqs": [
     {
       "question": "Como posso fazer uma encomenda?",
-      "answer": "Pode encomendar através da nossa loja online ou visitar-nos na nossa loja física em São Mamede Infesta, Matosinhos."
+      "answer": "Pode visitar-nos na nossa loja física em São Mamede Infesta, Matosinhos, ou entrar em contacto connosco através dos nossos contactos."
     },
     {
       "question": "Qual é o prazo de entrega?",
@@ -311,9 +311,7 @@ const routes = {
     '/': 'home',
     '/quem-somos': 'about',
     '/cookies': 'cookies',
-    '/embalagem': 'packaging',
     '/onde-estamos': 'location',
-    '/loja': 'shop',
     '/contactos': 'contact',
     '/faq': 'faq',
     '/reviews': 'reviews',
@@ -385,23 +383,9 @@ async function renderPage(route) {
                     content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
                 }
                 break;
-            case '/embalagem':
-                if (typeof renderPackagingPage !== 'undefined') {
-                    content.innerHTML = await renderPackagingPage(data);
-                } else {
-                    content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
-                }
-                break;
             case '/onde-estamos':
                 if (typeof renderLocationPage !== 'undefined') {
                     content.innerHTML = await renderLocationPage(data);
-                } else {
-                    content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
-                }
-                break;
-            case '/loja':
-                if (typeof renderShopPage !== 'undefined') {
-                    content.innerHTML = await renderShopPage(data);
                 } else {
                     content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
                 }
@@ -449,9 +433,7 @@ function getPageTitle(route) {
         '/': 'Huella - Cookies Artesanais',
         '/quem-somos': 'Os Meus Valores',
         '/cookies': 'Os Nossos Cookies',
-        '/embalagem': 'Embalagem Sustentável',
         '/onde-estamos': 'Onde Estamos',
-        '/loja': 'Loja',
         '/contactos': 'Contactos',
         '/faq': 'FAQ',
         '/reviews': 'Avaliações'
@@ -470,10 +452,6 @@ async function renderAboutPage(data) {
 async function renderCookiesPage(data) {
     // Será implementado
     return '<div class="container py-5"><h1>Os Nossos Cookies</h1></div>';
-}
-
-async function renderPackagingPage(data) {
-    return '<div class="container py-5"><h1>Embalagem Sustentável</h1></div>';
 }
 
 async function renderLocationPage(data) {
