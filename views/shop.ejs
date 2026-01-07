@@ -1,0 +1,363 @@
+<%- include('layout', { body: `
+<!-- Hero Section -->
+<section class="huella-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="huella-fade-in">Loja Online</h1>
+                <p class="lead huella-fade-in">Encomende os seus cookies favoritos e receba-os frescos em casa em apenas 3 dias úteis.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/img/shop/online-shopping.jpg" alt="Loja Online" class="img-fluid huella-fade-in" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search and Filters -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="huella-card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 mb-3 mb-lg-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control huella-form-control" id="searchInput" placeholder="Pesquisar cookies...">
+                                    <button class="btn btn-huella-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-huella-green active" data-filter="all">Todos</button>
+                                    <button class="btn btn-outline-huella-green" data-filter="fixed">Fixos</button>
+                                    <button class="btn btn-outline-huella-green" data-filter="seasonal">Sazonais</button>
+                                    <button class="btn btn-outline-huella-green" data-filter="boxes">Caixas</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Os Nossos Cookies</h2>
+                <p class="huella-text">Escolha os seus sabores favoritos</p>
+            </div>
+        </div>
+        
+        <!-- Individual Cookies -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="huella-subtitle mb-4">Cookies Individuais</h3>
+            </div>
+            ${products.map(product => `
+            <div class="col-lg-4 col-md-6 mb-4 product-card" data-category="${product.category}">
+                <div class="card huella-card h-100">
+                    <div class="position-relative">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        ${product.category === 'seasonal' ? '<span class="position-absolute top-0 end-0 m-2 huella-badge huella-badge-seasonal"><i class="fas fa-star me-1"></i>Limitado</span>' : ''}
+                        ${!product.inStock ? '<span class="position-absolute top-0 start-0 m-2 huella-badge bg-secondary">Esgotado</span>' : ''}
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title product-name">${product.name}</h5>
+                        <p class="card-text product-description flex-grow-1">${product.description}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="huella-price">${product.price.toFixed(2)}€</span>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary quantity-minus">-</button>
+                                    <input type="number" class="form-control form-control-sm quantity-input text-center" value="1" min="1" style="width: 60px;">
+                                    <button class="btn btn-sm btn-outline-secondary quantity-plus">+</button>
+                                </div>
+                                <button class="btn btn-huella-primary btn-sm" ${!product.inStock ? 'disabled' : ''} onclick="${product.inStock ? `addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')` : ''}">
+                                    <i class="fas fa-plus me-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+        
+        <!-- Mixed Boxes -->
+        <div class="row">
+            <div class="col-12">
+                <h3 class="huella-subtitle mb-4">Caixas Mistas</h3>
+            </div>
+            ${boxes.map(box => `
+            <div class="col-lg-4 col-md-6 mb-4 product-card" data-category="boxes">
+                <div class="card huella-card h-100">
+                    <img src="${box.image}" class="card-img-top" alt="${box.name}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title product-name">${box.name}</h5>
+                        <p class="card-text product-description flex-grow-1">${box.description}</p>
+                        <div class="mb-3">
+                            <span class="huella-price">${box.price.toFixed(2)}€</span>
+                            ${box.savings > 0 ? `<small class="text-success d-block">Poupe ${box.savings.toFixed(2)}€</small>` : ''}
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <div class="quantity-selector d-flex align-items-center">
+                                <button class="btn btn-sm btn-outline-secondary quantity-minus">-</button>
+                                <input type="number" class="form-control form-control-sm quantity-input text-center" value="1" min="1" style="width: 60px;">
+                                <button class="btn btn-sm btn-outline-secondary quantity-plus">+</button>
+                            </div>
+                            <button class="btn btn-huella-primary btn-sm" onclick="addToCart(${box.id}, '${box.name}', ${box.price}, '${box.image}')">
+                                <i class="fas fa-plus me-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+
+<!-- Shopping Cart Sidebar -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartOffcanvasLabel">
+            <i class="fas fa-shopping-cart me-2"></i>Carrinho de Compras
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div id="cartItems">
+            <p class="text-muted text-center">O seu carrinho está vazio</p>
+        </div>
+        <div class="mt-auto pt-3 border-top">
+            <div class="d-flex justify-content-between mb-3">
+                <strong>Total:</strong>
+                <strong id="cartTotal">0,00€</strong>
+            </div>
+            <button class="btn btn-huella-primary w-100" onclick="proceedToCheckout()">
+                <i class="fas fa-credit-card me-2"></i>Finalizar Encomenda
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkoutModalLabel">Finalizar Encomenda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName" class="huella-form-label">Nome *</label>
+                            <input type="text" class="form-control huella-form-control" id="firstName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName" class="huella-form-label">Apelido *</label>
+                            <input type="text" class="form-control huella-form-control" id="lastName" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="huella-form-label">Email *</label>
+                        <input type="email" class="form-control huella-form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="huella-form-label">Telefone *</label>
+                        <input type="tel" class="form-control huella-form-control" id="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="huella-form-label">Morada Completa *</label>
+                        <textarea class="form-control huella-form-control" id="address" rows="3" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="postalCode" class="huella-form-label">Código Postal *</label>
+                            <input type="text" class="form-control huella-form-control" id="postalCode" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="city" class="huella-form-label">Cidade *</label>
+                            <input type="text" class="form-control huella-form-control" id="city" required>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Informação de Envio:</strong> O envio demora ${shippingInfo.deliveryTime} e custa ${shippingInfo.shippingCost.toFixed(2)}€. 
+                        Envio gratuito para encomendas superiores a ${shippingInfo.freeShippingThreshold.toFixed(2)}€.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" form="checkoutForm" class="btn btn-huella-primary">
+                    <i class="fas fa-credit-card me-2"></i>Confirmar Encomenda
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shipping Information -->
+<section class="huella-section huella-section-green">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="text-white">Informações de Envio</h2>
+                <p class="text-white-50">Entregamos em todo o território nacional</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-shipping-fast fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Entrega Rápida</h5>
+                    <p class="text-white-50">${shippingInfo.deliveryTime} para todo o país</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-gift fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Embalagem Especial</h5>
+                    <p class="text-white-50">Cookies frescos em embalagem sustentável</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-shield-alt fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Garantia de Qualidade</h5>
+                    <p class="text-white-50">Cookies sempre frescos ou o seu dinheiro de volta</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="huella-title">Pronto para Encomendar?</h2>
+                <p class="huella-text mb-4">Adicione os seus cookies favoritos ao carrinho e receba-os frescos em casa.</p>
+                <button class="btn btn-huella-primary btn-lg" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                    <i class="fas fa-shopping-cart me-2"></i>Ver Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Cart functionality
+let cart = JSON.parse(localStorage.getItem('huellaCart')) || [];
+
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="text-muted text-center">O seu carrinho está vazio</p>';
+        cartTotal.textContent = '0,00€';
+        return;
+    }
+    
+    let total = 0;
+    let itemsHtml = '';
+    
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        itemsHtml += \`
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="flex-grow-1">
+                    <h6 class="mb-1">\${item.name}</h6>
+                    <small class="text-muted">\${item.quantity}x \${item.price.toFixed(2)}€</small>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(\${item.id}, -1)">-</button>
+                    <span>\${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(\${item.id}, 1)">+</button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(\${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        \`;
+    });
+    
+    cartItems.innerHTML = itemsHtml;
+    cartTotal.textContent = total.toFixed(2) + '€';
+}
+
+function updateQuantity(id, change) {
+    const item = cart.find(item => item.id === id);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            cart = cart.filter(item => item.id !== id);
+        }
+        localStorage.setItem('huellaCart', JSON.stringify(cart));
+        updateCartDisplay();
+        updateCartCount();
+    }
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('huellaCart', JSON.stringify(cart));
+    updateCartDisplay();
+    updateCartCount();
+}
+
+function proceedToCheckout() {
+    if (cart.length === 0) {
+        alert('O seu carrinho está vazio!');
+        return;
+    }
+    
+    const modal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+    modal.show();
+}
+
+// Filter functionality
+document.querySelectorAll('[data-filter]').forEach(button => {
+    button.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        // Update active button
+        document.querySelectorAll('[data-filter]').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter products
+        document.querySelectorAll('.product-card').forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Initialize cart display
+updateCartDisplay();
+</script>
+` }) %>
+

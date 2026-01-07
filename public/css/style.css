@@ -1,0 +1,599 @@
+/* ===== HUELLA CUSTOM STYLES ===== */
+
+/* CSS Variables for Huella Brand Colors */
+:root {
+    --huella-orange: #F47A20;
+    --huella-yellow: #FEBD11;
+    --huella-green: #1D512E;
+    --huella-beige: #FEE8AE;
+    --huella-white: #FFFFFF;
+    --huella-dark: #2C2C2C;
+    --huella-light-gray: #F8F9FA;
+    --huella-medium-gray: #6C757D;
+}
+
+/* Global Styles */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--huella-beige);
+    color: var(--huella-dark);
+    line-height: 1.6;
+}
+
+/* ===== NAVBAR STYLES ===== */
+.huella-navbar {
+    background-color: #F47A20 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.huella-navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.huella-navbar .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.huella-navbar .btn:first-child {
+    margin-right: auto;
+}
+
+.huella-navbar .btn:last-child {
+    margin-left: auto;
+}
+
+.huella-navbar .badge {
+    background-color: var(--huella-green) !important;
+    color: var(--huella-white) !important;
+}
+
+.huella-navbar.scrolled {
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.huella-orange-icon {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) brightness(1.2);
+}
+
+.huella-orange-icon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) brightness(1.3);
+}
+
+.huella-logo {
+    transition: transform 0.3s ease;
+}
+
+.huella-logo:hover {
+    transform: scale(1.05);
+}
+
+.huella-cart-icon {
+    color: var(--huella-white);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.huella-cart-icon:hover {
+    color: var(--huella-yellow);
+}
+
+/* ===== OFFCANVAS MENU STYLES ===== */
+.huella-offcanvas-header {
+    background-color: var(--huella-green);
+    color: var(--huella-white);
+}
+
+.huella-offcanvas-body {
+    background-color: var(--huella-beige);
+}
+
+.huella-offcanvas-body .nav-link {
+    color: var(--huella-dark);
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin: 0.25rem 0;
+    transition: all 0.3s ease;
+}
+
+.huella-offcanvas-body .nav-link:hover {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+    transform: translateX(5px);
+}
+
+.huella-offcanvas-body .nav-link.active {
+    background-color: var(--huella-green);
+    color: var(--huella-white);
+}
+
+.huella-offcanvas-body .nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ===== CART SIDEBAR STYLES ===== */
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #E9ECEF;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    color: var(--huella-green);
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.cart-item-price {
+    color: var(--huella-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--huella-orange);
+    background: transparent;
+    color: var(--huella-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+}
+
+.quantity-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--huella-green);
+}
+
+.remove-item-btn {
+    background: none;
+    border: none;
+    color: #DC3545;
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    color: #B02A37;
+}
+
+.cart-total {
+    font-size: 1.2rem;
+    color: var(--huella-green);
+}
+
+.cart-empty-icon {
+    color: var(--huella-medium-gray);
+    opacity: 0.5;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+/* ===== BUTTONS ===== */
+.btn-huella-primary {
+    background-color: var(--huella-orange);
+    border-color: var(--huella-orange);
+    color: var(--huella-white);
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-huella-primary:hover {
+    background-color: #E06A1A;
+    border-color: #E06A1A;
+    color: var(--huella-white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 122, 32, 0.3);
+}
+
+.btn-huella-secondary {
+    background-color: var(--huella-green);
+    border-color: var(--huella-green);
+    color: var(--huella-white);
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-huella-secondary:hover {
+    background-color: #164025;
+    border-color: #164025;
+    color: var(--huella-white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 81, 46, 0.3);
+}
+
+.btn-huella-outline {
+    background-color: transparent;
+    border: 2px solid var(--huella-orange);
+    color: var(--huella-orange);
+    font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-huella-outline:hover {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+    transform: translateY(-2px);
+}
+
+/* ===== CARDS ===== */
+.huella-card {
+    background-color: var(--huella-white);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.huella-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.huella-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.huella-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.huella-card .card-body {
+    padding: 1.5rem;
+}
+
+.huella-card .card-title {
+    color: var(--huella-green);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.huella-card .card-text {
+    color: var(--huella-medium-gray);
+    font-size: 0.95rem;
+}
+
+.huella-price {
+    color: var(--huella-orange);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+/* ===== SECTIONS ===== */
+.huella-section {
+    padding: 4rem 0;
+}
+
+.huella-section-alt {
+    background-color: var(--huella-white);
+}
+
+.huella-section-beige {
+    background-color: var(--huella-beige);
+}
+
+.huella-section-green {
+    background-color: var(--huella-green);
+    color: var(--huella-white);
+}
+
+.huella-section-orange {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+}
+
+/* ===== TYPOGRAPHY ===== */
+.huella-title {
+    color: var(--huella-green);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.huella-subtitle {
+    color: var(--huella-orange);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.huella-text {
+    color: var(--huella-medium-gray);
+    font-size: 1.1rem;
+}
+
+.huella-quote {
+    font-style: italic;
+    color: var(--huella-green);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--huella-white);
+    border-radius: 15px;
+    border-left: 5px solid var(--huella-orange);
+}
+
+/* ===== HERO SECTIONS ===== */
+.huella-hero {
+    background: linear-gradient(135deg, var(--huella-beige) 0%, var(--huella-white) 100%);
+    padding: 6rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.huella-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/img/patterns/cookie-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: 1;
+}
+
+.huella-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.huella-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--huella-green);
+    margin-bottom: 1.5rem;
+}
+
+.huella-hero .lead {
+    font-size: 1.3rem;
+    color: var(--huella-medium-gray);
+    margin-bottom: 2rem;
+}
+
+/* ===== FOOTER ===== */
+.huella-footer {
+    background-color: var(--huella-green);
+    color: var(--huella-white);
+    padding: 3rem 0 1rem;
+    margin-top: auto;
+}
+
+.huella-footer a {
+    transition: color 0.3s ease;
+}
+
+.huella-footer a:hover {
+    color: var(--huella-yellow) !important;
+}
+
+.huella-footer .fab {
+    transition: transform 0.3s ease;
+}
+
+.huella-footer .fab:hover {
+    transform: scale(1.2);
+}
+
+/* ===== FORMS ===== */
+.huella-form-control {
+    border: 2px solid #E9ECEF;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.huella-form-control:focus {
+    border-color: var(--huella-orange);
+    box-shadow: 0 0 0 0.2rem rgba(244, 122, 32, 0.25);
+}
+
+.huella-form-label {
+    color: var(--huella-green);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== BADGES ===== */
+.huella-badge {
+    background-color: var(--huella-yellow);
+    color: var(--huella-green);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.huella-badge-new {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+}
+
+.huella-badge-seasonal {
+    background-color: var(--huella-green);
+    color: var(--huella-white);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.huella-fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.huella-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .huella-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .huella-hero .lead {
+        font-size: 1.1rem;
+    }
+    
+    .huella-card {
+        margin-bottom: 2rem;
+    }
+    
+    .main-content {
+        margin-top: 70px;
+    }
+    
+    .huella-section {
+        padding: 2rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .huella-hero {
+        padding: 4rem 0 2rem;
+    }
+    
+    .huella-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .btn-huella-primary,
+    .btn-huella-secondary,
+    .btn-huella-outline {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-huella-orange { color: var(--huella-orange) !important; }
+.text-huella-yellow { color: var(--huella-yellow) !important; }
+.text-huella-green { color: var(--huella-green) !important; }
+.text-huella-beige { color: var(--huella-beige) !important; }
+
+.bg-huella-orange { background-color: var(--huella-orange) !important; }
+.bg-huella-yellow { background-color: var(--huella-yellow) !important; }
+.bg-huella-green { background-color: var(--huella-green) !important; }
+.bg-huella-beige { background-color: var(--huella-beige) !important; }
+
+.border-huella-orange { border-color: var(--huella-orange) !important; }
+.border-huella-green { border-color: var(--huella-green) !important; }
+
+/* ===== LOADING STATES ===== */
+.huella-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(244, 122, 32, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--huella-orange);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--huella-beige);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--huella-orange);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #E06A1A;
+}
+

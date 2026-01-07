@@ -1,0 +1,113 @@
+<%- include('layout', { body: `
+<!-- 404 Error Section -->
+<section class="huella-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="huella-fade-in">Oops! Página não encontrada</h1>
+                <p class="lead huella-fade-in">Parece que esta página se perdeu como um cookie esquecido no forno. Mas não se preocupe, temos muitos outros sabores para descobrir!</p>
+                <div class="d-flex gap-3 huella-fade-in">
+                    <a href="/" class="btn btn-huella-primary btn-lg">
+                        <i class="fas fa-home me-2"></i>Voltar ao Início
+                    </a>
+                    <a href="/loja" class="btn btn-huella-outline btn-lg">
+                        <i class="fas fa-shopping-cart me-2"></i>Ver Loja
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="huella-fade-in">
+                    <i class="fas fa-cookie-bite" style="font-size: 8rem; color: var(--huella-orange); opacity: 0.3;"></i>
+                    <h2 class="display-1 fw-bold text-huella-orange mt-3">404</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Pages -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Páginas Populares</h2>
+                <p class="huella-text">Talvez esteja à procura de uma destas páginas</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-home fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Home</h5>
+                        <p class="card-text">Página principal com os nossos destaques</p>
+                        <a href="/" class="btn btn-huella-outline">Visitar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-cookie-bite fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Cookies</h5>
+                        <p class="card-text">Descubra todos os nossos sabores</p>
+                        <a href="/cookies" class="btn btn-huella-outline">Ver Sabores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-store fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Loja</h5>
+                        <p class="card-text">Encomende os seus cookies favoritos</p>
+                        <a href="/loja" class="btn btn-huella-outline">Encomendar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-envelope fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Contactos</h5>
+                        <p class="card-text">Entre em contacto connosco</p>
+                        <a href="/contactos" class="btn btn-huella-outline">Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="huella-card">
+                    <div class="card-body text-center">
+                        <h3 class="card-title text-huella-green mb-4">
+                            <i class="fas fa-search me-2"></i>Procurar no Site
+                        </h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control huella-form-control" placeholder="O que está à procura?">
+                            <button class="btn btn-huella-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+` }) %>
+

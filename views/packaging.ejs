@@ -1,0 +1,276 @@
+<%- include('layout', { body: `
+<!-- Hero Section -->
+<section class="huella-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="huella-fade-in">Embalagem Sustentável</h1>
+                <p class="lead huella-fade-in">Cuidamos do planeta em cada detalhe. A nossa embalagem é 100% ecológica e pensada para ter uma segunda vida.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/img/packaging/eco-packaging.jpg" alt="Embalagem Ecológica" class="img-fluid huella-fade-in" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Porquê a Nossa Embalagem é Especial</h2>
+                <p class="huella-text">Cada detalhe foi pensado para cuidar do ambiente</p>
+            </div>
+        </div>
+        <div class="row">
+            ${features.map(feature => `
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card huella-card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <span class="display-4">${feature.icon}</span>
+                        </div>
+                        <h5 class="card-title">${feature.title}</h5>
+                        <p class="card-text">${feature.description}</p>
+                        <ul class="list-unstyled text-start">
+                            ${feature.details.map(detail => `<li><i class="fas fa-check text-huella-green me-2"></i>${detail}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">O Nosso Processo</h2>
+                <p class="huella-text">Como criamos embalagens sustentáveis</p>
+            </div>
+        </div>
+        <div class="row">
+            ${process.map((step, index) => `
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <div class="rounded-circle bg-huella-orange text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <span class="fw-bold fs-4">${step.step}</span>
+                        </div>
+                    </div>
+                    <h5>${step.title}</h5>
+                    <p class="huella-text">${step.description}</p>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+
+<!-- Materials -->
+<section class="huella-section huella-section-green">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="text-white">Materiais Utilizados</h2>
+                <p class="text-white-50">100% naturais e biodegradáveis</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-file-alt fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Papel Kraft Reciclado</h5>
+                    <p class="text-white-50">Feito a partir de papel reciclado, resistente e elegante</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-palette fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Tintas Vegetais</h5>
+                    <p class="text-white-50">Cores naturais extraídas de plantas e minerais</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-cut fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Fitas de Algodão</h5>
+                    <p class="text-white-50">Fitas orgânicas que podem ser reutilizadas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Galeria de Embalagens</h2>
+                <p class="huella-text">Veja como são as nossas embalagens</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card huella-card">
+                    <img src="/img/packaging/small-box.jpg" class="card-img-top" alt="Caixa Pequena">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Caixa Pequena</h5>
+                        <p class="card-text">Perfeita para 6 cookies individuais</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card huella-card">
+                    <img src="/img/packaging/medium-box.jpg" class="card-img-top" alt="Caixa Média">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Caixa Média</h5>
+                        <p class="card-text">Ideal para 12 cookies variados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card huella-card">
+                    <img src="/img/packaging/large-box.jpg" class="card-img-top" alt="Caixa Grande">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Caixa Grande</h5>
+                        <p class="card-text">Espaçosa para 24 cookies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reuse Ideas -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Dê uma Segunda Vida às Nossas Caixas</h2>
+                <p class="huella-text">Ideias criativas para reutilizar as nossas embalagens</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-seedling fa-3x text-huella-green"></i>
+                    </div>
+                    <h5>Vasos para Plantas</h5>
+                    <p class="huella-text">Perfeitas para sementes e pequenas plantas</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-gift fa-3x text-huella-green"></i>
+                    </div>
+                    <h5>Caixas de Presentes</h5>
+                    <p class="huella-text">Ideais para embrulhar presentes especiais</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-archive fa-3x text-huella-green"></i>
+                    </div>
+                    <h5>Organização</h5>
+                    <p class="huella-text">Organize objetos pequenos em casa</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-palette fa-3x text-huella-green"></i>
+                    </div>
+                    <h5>Artes e Ofícios</h5>
+                    <p class="huella-text">Base perfeita para projetos criativos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Environmental Impact -->
+<section class="huella-section huella-section-orange">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="text-white">O Nosso Impacto Ambiental</h2>
+                <p class="text-white-50">Números que fazem a diferença</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-recycle fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h3 class="fw-bold">100%</h3>
+                    <p>Reciclável</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-leaf fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h3 class="fw-bold">0</h3>
+                    <p>Plásticos</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-tree fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h3 class="fw-bold">-50%</h3>
+                    <p>Pegada Carbónica</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-globe fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h3 class="fw-bold">100%</h3>
+                    <p>Biodegradável</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="huella-title">Junte-se à Revolução Sustentável</h2>
+                <p class="huella-text mb-4">Escolha produtos que cuidam do planeta. Cada encomenda é um passo em direção a um futuro mais verde.</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="/loja" class="btn btn-huella-primary btn-lg">
+                        <i class="fas fa-shopping-cart me-2"></i>Encomendar Agora
+                    </a>
+                    <a href="/contactos" class="btn btn-huella-outline btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Saber Mais
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+` }) %>
+

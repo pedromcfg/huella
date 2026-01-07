@@ -1,0 +1,265 @@
+<%- include('layout', { body: `
+<!-- Product Hero Section -->
+<section class="huella-section" style="padding-top: 2rem;">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class="text-huella-orange">Home</a></li>
+                <li class="breadcrumb-item"><a href="/cookies" class="text-huella-orange">Cookies</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><%= cookie.name %></li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Product Details Section -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-lg-6 mb-4">
+                <div class="product-main-image mb-3">
+                    <img id="mainProductImage" src="<%= cookie.image %>" alt="<%= cookie.name %>" class="img-fluid rounded huella-card" style="width: 100%; height: 500px; object-fit: cover; cursor: pointer;" onclick="openImageModal('<%= cookie.image %>')">
+                </div>
+                <% if (cookie.images && cookie.images.length > 1) { %>
+                <div class="product-thumbnails d-flex gap-2 flex-wrap">
+                    <% cookie.images.forEach(function(img, index) { %>
+                        <img src="<%= img %>" alt="<%= cookie.name %> - Imagem <%= index + 1 %>" 
+                             class="img-thumbnail <%= index === 0 ? 'active' : '' %>" 
+                             style="width: 100px; height: 100px; object-fit: cover; cursor: pointer; border: 2px solid <%= index === 0 ? 'var(--huella-orange)' : '#ddd' %>;"
+                             onclick="changeMainImage('<%= img %>', this)">
+                    <% }); %>
+                </div>
+                <% } %>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <h1 class="huella-title mb-3"><%= cookie.name %></h1>
+                    
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <span class="huella-price" style="font-size: 2rem;"><%= cookie.price %></span>
+                        <% if (cookie.vegan) { %>
+                        <span class="huella-badge bg-huella-green text-white"><i class="fas fa-leaf me-1"></i>Vegano</span>
+                        <% } %>
+                        <% if (cookie.glutenFree) { %>
+                        <span class="huella-badge bg-huella-yellow text-huella-green"><i class="fas fa-seedling me-1"></i>Sem Glúten</span>
+                        <% } %>
+                        <% if (cookie.category === 'especial') { %>
+                        <span class="huella-badge huella-badge-seasonal"><i class="fas fa-star me-1"></i>Edição Especial</span>
+                        <% } %>
+                    </div>
+
+                    <p class="lead mb-4"><%= cookie.description %></p>
+                    
+                    <div class="mb-4">
+                        <h5 class="text-huella-orange mb-3">O segredo está aqui:</h5>
+                        <ul class="list-unstyled">
+                            <% cookie.ingredients.forEach(function(ingredient) { %>
+                                <li class="mb-2">
+                                    <i class="fas fa-check-circle text-huella-green me-2"></i>
+                                    <span style="font-size: 1.1rem;"><%= ingredient %></span>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="text-huella-green mb-3">Descrição Completa</h5>
+                        <p class="huella-text"><%= cookie.fullDescription %></p>
+                    </div>
+
+                    <div class="product-actions mb-4">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <label class="text-huella-green fw-bold">Quantidade:</label>
+                            <div class="quantity-selector d-flex align-items-center gap-2">
+                                <button class="btn btn-outline-secondary quantity-btn" onclick="decreaseQuantity()">-</button>
+                                <input type="number" id="productQuantity" class="form-control text-center" value="1" min="1" max="20" style="width: 80px;">
+                                <button class="btn btn-outline-secondary quantity-btn" onclick="increaseQuantity()">+</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-huella-primary btn-lg w-100 mb-2" onclick="addToCartFromProduct()">
+                            <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+                        </button>
+                        <button class="btn btn-huella-outline btn-lg w-100" onclick="shareProduct()">
+                            <i class="fas fa-share-alt me-2"></i>Partilhar
+                        </button>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-truck text-huella-orange me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <strong>Entrega Rápida</strong>
+                                        <p class="small mb-0">3 dias úteis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-shield-alt text-huella-green me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <strong>Garantia de Qualidade</strong>
+                                        <p class="small mb-0">100% artesanal</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-recycle text-huella-yellow me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <strong>Embalagem Sustentável</strong>
+                                        <p class="small mb-0">100% reciclável</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-heart text-huella-orange me-2" style="font-size: 1.5rem;"></i>
+                                    <div>
+                                        <strong>Feito com Amor</strong>
+                                        <p class="small mb-0">Ingredientes premium</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<% if (relatedCookies && relatedCookies.length > 0) { %>
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Cookies Relacionados</h2>
+                <p class="huella-text">Outros sabores que pode gostar</p>
+            </div>
+        </div>
+        <div class="row">
+            <% relatedCookies.forEach(function(relatedCookie) { %>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card huella-card h-100">
+                    <a href="/cookie/<%= relatedCookie.slug %>" class="text-decoration-none">
+                        <img src="<%= relatedCookie.image %>" class="card-img-top" alt="<%= relatedCookie.name %>" style="cursor: pointer;">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <a href="/cookie/<%= relatedCookie.slug %>" class="text-decoration-none">
+                            <h5 class="card-title"><%= relatedCookie.name %></h5>
+                        </a>
+                        <p class="card-text flex-grow-1"><%= relatedCookie.description %></p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="huella-price"><%= relatedCookie.price %></span>
+                            <a href="/cookie/<%= relatedCookie.slug %>" class="btn btn-huella-primary btn-sm">
+                                <i class="fas fa-eye me-1"></i>Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="<%= cookie.name %>" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Product-specific JavaScript
+const productData = {
+    id: '<%= cookie.slug %>',
+    name: '<%= cookie.name.replace(/'/g, "\\'") %>',
+    price: <%= cookie.priceValue %>,
+    image: '<%= cookie.image %>'
+};
+
+function changeMainImage(imageSrc, element) {
+    document.getElementById('mainProductImage').src = imageSrc;
+    document.querySelectorAll('.img-thumbnail').forEach(function(img) {
+        img.style.border = '2px solid #ddd';
+    });
+    element.style.border = '2px solid var(--huella-orange)';
+}
+
+function openImageModal(imageSrc) {
+    document.getElementById('modalImage').src = imageSrc;
+    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+    modal.show();
+}
+
+function increaseQuantity() {
+    const input = document.getElementById('productQuantity');
+    const currentValue = parseInt(input.value);
+    if (currentValue < 20) {
+        input.value = currentValue + 1;
+    }
+}
+
+function decreaseQuantity() {
+    const input = document.getElementById('productQuantity');
+    const currentValue = parseInt(input.value);
+    if (currentValue > 1) {
+        input.value = currentValue - 1;
+    }
+}
+
+function addToCartFromProduct() {
+    const quantity = parseInt(document.getElementById('productQuantity').value);
+    for (let i = 0; i < quantity; i++) {
+        if (typeof addToCart === 'function') {
+            addToCart(productData.id, productData.name, productData.price, productData.image);
+        }
+    }
+    
+    // Show success message
+    const alert = document.createElement('div');
+    alert.className = 'alert alert-success position-fixed';
+    alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px; border-radius: 10px;';
+    const plural = quantity > 1 ? 's' : '';
+    alert.innerHTML = '<i class="fas fa-check-circle me-2"></i><strong>' + quantity + 'x ' + productData.name + '</strong> adicionado' + plural + ' ao carrinho!';
+    document.body.appendChild(alert);
+    
+    setTimeout(function() {
+        alert.remove();
+    }, 3000);
+}
+
+function shareProduct() {
+    const url = window.location.href;
+    const text = 'Confira o ' + productData.name + ' da Huella! ' + productData.price + '€';
+    
+    if (navigator.share) {
+        navigator.share({
+            title: productData.name,
+            text: text,
+            url: url
+        });
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(url).then(function() {
+            alert('Link copiado para a área de transferência!');
+        });
+    }
+}
+</script>
+` }) %>

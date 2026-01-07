@@ -1,0 +1,87 @@
+site de exposicao
+
+cookies
+
+marca é Huella
+
+cores:
+febd11
+F47a20 Cor principal 
+1d512e
+fee8ae
+
+Sim, consigo ajudar! A folha que mostraste parece ser um brainstorming ou rascunho de requisitos/ideias para um site chamado **HUELLA – PAP**. Vou organizar o que está escrito de forma mais clara:
+
+---
+
+### **O que o site deve conter**
+
+* 📍 **Local para fotos**
+* 🔗 **Redes sociais** (ligação com o site)
+* ⭐ **Comentários e avaliações (reviews)**
+* 📖 **Quem somos / História**
+* 🎯 **Missão / Valores**
+* 🍪 **Descrição de sabores / produtos (fixos e sazonais)**
+* 📦 **Informações sobre a embalagem**
+* 📑 **Perguntas frequentes**
+* 📰 **Mensais (novidades ou publicações periódicas)**
+
+---
+
+### **Secções principais pensadas**
+
+* **Quem somos**
+
+  * Nossa história
+  * Valores
+
+* **Sobre cookies**
+
+  * Fixos (sabores)
+  * Sazonais (por época do ano)
+  * Preços
+  * Possibilidade de caixas variadas
+  * Mais ambiente amigável
+
+* **Onde estamos**
+
+  * Endereço físico
+  * Google Maps (RA)
+
+* **Embalagem**
+
+  * Explicação sobre a embalagem (sustentabilidade, qualidade, etc.)
+
+---
+
+### **Contactos**
+
+* Local físico
+* Redes sociais:
+
+  * TikTok
+  * Instagram
+  * YouTube
+  * Facebook
+* Email
+* Telefone (?)
+
+---
+
+### **Outros apontamentos**
+
+* Perguntas frequentes (“FAQ”)
+* Um pouco de “frases” (provavelmente slogans ou frases inspiradoras)
+* Resolvedor de dúvidas
+* * informações sobre sabores, mensalidades, etc.
+* Logotipo
+
+loja online
+
+pessoa indica a morada de envio
+envio dura 3 dias
+
+logotipo na navbar do lado direito
+icone de laranja para funcionar como botao hamburger na navbar do lado esquerdo, para surgir uma gaveta de opçoes
+
+ 

@@ -1,0 +1,261 @@
+<%- include('layout', { body: `
+<!-- Hero Section -->
+<section class="huella-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="huella-fade-in">Cookies Artesanais "sin Huella"</h1>
+                <p class="lead huella-fade-in">Mais do que cookies, são uma obra de arte feita à mão, sem ingredientes de origens animal. Descobre os sabores únicos que podes partilhar.</p>
+                <div class="d-flex gap-3 huella-fade-in">
+                    <a href="/loja" class="btn btn-huella-primary btn-lg">
+                        <i class="fas fa-shopping-cart me-2"></i>Encomenda Já
+                    </a>
+                    <a href="/cookies" class="btn btn-huella-outline btn-lg">
+                        <i class="fas fa-cookie-bite me-2"></i>Ver Sabores
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/img/hero/cookies-hero.jpg" alt="Cookies Huella" class="img-fluid huella-fade-in" style="max-height: 500px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Quote -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <blockquote class="huella-quote">
+                    "Na Huella acreditamos que cada trinca deve ser algo inesquecível, por isso criamos bolachas que não só sabem bem como contam uma história."
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Cookies -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Os Nossos Favoritos</h2>
+                <p class="huella-text">Sabores que conquistaram o coração dos nossos clientes</p>
+            </div>
+        </div>
+        <div class="row">
+            ${featuredCookies.map(cookie => `
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card huella-card h-100">
+                    <a href="/cookie/${cookie.slug || cookie.name.toLowerCase().replace(/\s+/g, '-')}" class="text-decoration-none">
+                        <img src="${cookie.image}" class="card-img-top" alt="${cookie.name}" style="cursor: pointer;">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <a href="/cookie/${cookie.slug || cookie.name.toLowerCase().replace(/\s+/g, '-')}" class="text-decoration-none">
+                            <h5 class="card-title">${cookie.name}</h5>
+                        </a>
+                        <p class="card-text flex-grow-1">${cookie.description}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="huella-price">${cookie.price}</span>
+                            <div class="d-flex gap-2">
+                                <a href="/cookie/${cookie.slug || cookie.name.toLowerCase().replace(/\s+/g, '-')}" class="btn btn-huella-outline btn-sm">
+                                    <i class="fas fa-eye me-1"></i>Ver
+                                </a>
+                                <button class="btn btn-huella-primary btn-sm" onclick="addToCart('${cookie.name.toLowerCase().replace(/\s+/g, '-')}', '${cookie.name}', ${cookie.price.replace('€', '').replace(',', '.')}, '${cookie.image}')">
+                                    <i class="fas fa-plus me-1"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="/cookies" class="btn btn-huella-secondary">
+                    <i class="fas fa-cookie-bite me-2"></i>Ver Todos os Sabores
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seasonal Cookies -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Edições Limitadas</h2>
+                <p class="huella-text">Sabores especiais que aparecem apenas em certas épocas do ano</p>
+            </div>
+        </div>
+        <div class="row">
+            ${seasonalCookies.map(cookie => `
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card huella-card h-100">
+                    <div class="position-relative">
+                        <img src="${cookie.image}" class="card-img-top" alt="${cookie.name}">
+                        <span class="position-absolute top-0 end-0 m-2 huella-badge huella-badge-seasonal">
+                            <i class="fas fa-star me-1"></i>Limitado
+                        </span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${cookie.name}</h5>
+                        <p class="card-text flex-grow-1">${cookie.description}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="huella-price">${cookie.price}</span>
+                            <button class="btn btn-huella-primary btn-sm" onclick="addToCart('${cookie.name.toLowerCase().replace(/\s+/g, '-')}', '${cookie.name}', ${cookie.price.replace('€', '').replace(',', '.')}, '${cookie.image}')">
+                                <i class="fas fa-plus me-1"></i>Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Huella -->
+<section class="huella-section huella-section-green">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="text-white">Porquê Escolher a Huella?</h2>
+                <p class="text-white-50">Comprometidos com a excelência em cada detalhe</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-leaf fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Ingredientes Naturais</h5>
+                    <p class="text-white-50">Apenas ingredientes premium e naturais, sem conservantes artificiais</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-recycle fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Embalagem Sustentável</h5>
+                    <p class="text-white-50">100% biodegradável e reciclável, cuidando do planeta</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-heart fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Feito à Mão</h5>
+                    <p class="text-white-50">Cada cookie é preparado com carinho e atenção aos detalhes</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center text-white">
+                    <div class="mb-3">
+                        <i class="fas fa-shipping-fast fa-3x text-huella-yellow"></i>
+                    </div>
+                    <h5>Entrega Rápida</h5>
+                    <p class="text-white-50">Receba os seus cookies frescos em apenas 3 dias úteis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Customer Reviews Preview -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">O Que Dizem os Nossos Clientes</h2>
+                <p class="huella-text">Mais de 1000 avaliações 5 estrelas</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card huella-card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                        </div>
+                        <p class="card-text">"Os cookies da Huella são simplesmente divinais! O sabor do Chocolate Chip é incomparável."</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">Maria Santos</cite>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card huella-card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                        </div>
+                        <p class="card-text">"Encomendei a caixa grande para a empresa e todos ficaram encantados. Qualidade excecional!"</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">João Silva</cite>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card huella-card h-100">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                            <i class="fas fa-star text-huella-yellow"></i>
+                        </div>
+                        <p class="card-text">"O cookie de Lavanda e Limão é uma experiência única! Nunca tinha provado nada assim."</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">Ana Costa</cite>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="/reviews" class="btn btn-huella-outline">
+                    <i class="fas fa-star me-2"></i>Ver Todas as Avaliações
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="huella-section huella-section-orange">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h2 class="text-white mb-3">Fique a Par das Novidades</h2>
+                <p class="text-white-50 mb-4">Receba ofertas exclusivas e seja o primeiro a saber sobre novos sabores</p>
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control" placeholder="O seu email" required>
+                    <button class="btn btn-light" type="submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+` }) %>
+

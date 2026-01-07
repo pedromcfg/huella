@@ -1,0 +1,195 @@
+<%- include('layout', { body: `
+<!-- Hero Section -->
+<section class="huella-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="huella-fade-in">Perguntas Frequentes</h1>
+                <p class="lead huella-fade-in">Encontre respostas às questões mais comuns sobre os nossos cookies, encomendas e serviços.</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/img/faq/faq-hero.jpg" alt="FAQ Huella" class="img-fluid huella-fade-in" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search FAQ -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="huella-card">
+                    <div class="card-body text-center">
+                        <h3 class="card-title text-huella-green mb-4">
+                            <i class="fas fa-search me-2"></i>Pesquisar FAQ
+                        </h3>
+                        <div class="input-group">
+                            <input type="text" class="form-control huella-form-control" id="faqSearch" placeholder="Digite a sua pergunta...">
+                            <button class="btn btn-huella-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Categories -->
+<section class="huella-section huella-section-alt">
+    <div class="container">
+        ${categories.map(category => `
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <div class="mb-3">
+                        <span class="display-4">${category.icon}</span>
+                    </div>
+                    <h2 class="huella-title">${category.title}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="accordion" id="accordion${category.title.replace(/\s+/g, '')}">
+                    ${category.questions.map((faq, index) => `
+                    <div class="accordion-item huella-card mb-3">
+                        <h2 class="accordion-header" id="heading${category.title.replace(/\s+/g, '')}${index}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${category.title.replace(/\s+/g, '')}${index}" aria-expanded="false" aria-controls="collapse${category.title.replace(/\s+/g, '')}${index}">
+                                ${faq.question}
+                            </button>
+                        </h2>
+                        <div id="collapse${category.title.replace(/\s+/g, '')}${index}" class="accordion-collapse collapse" aria-labelledby="heading${category.title.replace(/\s+/g, '')}${index}" data-bs-parent="#accordion${category.title.replace(/\s+/g, '')}">
+                            <div class="accordion-body">
+                                ${faq.answer}
+                            </div>
+                        </div>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+        `).join('')}
+    </div>
+</section>
+
+<!-- Contact for More Questions -->
+<section class="huella-section huella-section-green">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-3">Não Encontrou a Resposta?</h2>
+                <p class="text-white-50 mb-4">A nossa equipa está sempre disponível para ajudar. Entre em contacto connosco!</p>
+                <div class="d-flex gap-3 justify-content-center">
+                    <a href="/contactos" class="btn btn-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contactar-nos
+                    </a>
+                    <a href="tel:+351211234567" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Ligar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Links -->
+<section class="huella-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="huella-title">Links Úteis</h2>
+                <p class="huella-text">Acesso rápido às informações mais importantes</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-shipping-fast fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Encomendas</h5>
+                        <p class="card-text">Saiba como encomendar e receber os seus cookies</p>
+                        <a href="/loja" class="btn btn-huella-outline">Encomendar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-cookie-bite fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Produtos</h5>
+                        <p class="card-text">Descubra todos os nossos sabores e ingredientes</p>
+                        <a href="/cookies" class="btn btn-huella-outline">Ver Sabores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-recycle fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Embalagem</h5>
+                        <p class="card-text">Conheça a nossa embalagem sustentável</p>
+                        <a href="/embalagem" class="btn btn-huella-outline">Saber Mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card huella-card h-100 text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star fa-3x text-huella-orange"></i>
+                        </div>
+                        <h5 class="card-title">Avaliações</h5>
+                        <p class="card-text">Veja o que dizem os nossos clientes</p>
+                        <a href="/reviews" class="btn btn-huella-outline">Ver Reviews</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// FAQ Search functionality
+document.getElementById('faqSearch').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    
+    accordionItems.forEach(item => {
+        const question = item.querySelector('.accordion-button').textContent.toLowerCase();
+        const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
+// Auto-expand accordion items on search
+document.getElementById('faqSearch').addEventListener('input', function() {
+    if (this.value.length > 2) {
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            if (item.style.display !== 'none') {
+                const collapse = item.querySelector('.accordion-collapse');
+                if (collapse) {
+                    collapse.classList.add('show');
+                    item.querySelector('.accordion-button').classList.remove('collapsed');
+                }
+            }
+        });
+    }
+});
+</script>
+` }) %>
+
