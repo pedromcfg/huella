@@ -220,6 +220,45 @@ body {
     opacity: 0.5;
 }
 
+/* ===== PAYMENT METHODS ===== */
+.payment-method-card {
+    transition: all 0.3s ease;
+}
+
+.payment-method-card:hover {
+    transform: translateX(5px);
+}
+
+.payment-method-card .huella-card {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.payment-method-card input[type="radio"]:checked ~ .huella-card,
+.payment-method-card:has(input[type="radio"]:checked) .huella-card {
+    border-color: var(--huella-orange);
+    background-color: var(--huella-beige);
+}
+
+.payment-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-method-card input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.payment-method-card input[type="radio"]:checked {
+    background-color: var(--huella-orange);
+    border-color: var(--huella-orange);
+}
+
 /* ===== MAIN CONTENT ===== */
 .main-content {
     margin-top: 80px;

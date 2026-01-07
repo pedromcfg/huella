@@ -13,8 +13,7 @@
   "author": "Ana - C2326",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "ejs": "^3.1.9"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

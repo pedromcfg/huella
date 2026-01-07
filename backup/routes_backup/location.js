@@ -7,17 +7,17 @@ router.get('/', (req, res) => {
     title: 'Onde Estamos - Huella',
     page: 'location',
     address: {
-      street: 'Rua das Flores, 123',
-      city: 'Lisboa',
-      postalCode: '1200-456',
+      street: 'Travessa Dr. Barros, nº 11',
+      city: 'São Mamede Infesta, Matosinhos',
+      postalCode: '4465-034',
       country: 'Portugal'
     },
     contact: {
-      phone: '+351 21 123 4567',
-      email: 'info@huella.pt',
+      phone: '934 506 306',
+      email: 'huellacookies@gmail.com',
       hours: {
-        weekdays: '09:00 - 18:00',
-        saturday: '10:00 - 16:00',
+        tuesdayToSaturday: '09:30 - 19:30',
+        monday: 'Fechado',
         sunday: 'Fechado'
       }
     },

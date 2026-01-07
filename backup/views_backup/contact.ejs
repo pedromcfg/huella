@@ -26,9 +26,9 @@
                         </h3>
                         <div class="mb-4">
                             <p class="mb-2">
-                                <strong>${contactInfo.address.street}</strong><br>
-                                ${contactInfo.address.postalCode} ${contactInfo.address.city}<br>
-                                ${contactInfo.address.country}
+                                <strong><%= contactInfo.address.street %></strong><br>
+                                <%= contactInfo.address.postalCode %> <%= contactInfo.address.city %><br>
+                                <%= contactInfo.address.country %>
                             </p>
                         </div>
                         
@@ -38,11 +38,11 @@
                         <div class="mb-4">
                             <p class="mb-2">
                                 <i class="fas fa-phone text-huella-green me-2"></i>
-                                <a href="tel:${contactInfo.phone}" class="text-decoration-none">${contactInfo.phone}</a>
+                                <a href="tel:<%= contactInfo.phone %>" class="text-decoration-none"><%= contactInfo.phone %></a>
                             </p>
                             <p class="mb-2">
                                 <i class="fas fa-envelope text-huella-green me-2"></i>
-                                <a href="mailto:${contactInfo.email}" class="text-decoration-none">${contactInfo.email}</a>
+                                <a href="mailto:<%= contactInfo.email %>" class="text-decoration-none"><%= contactInfo.email %></a>
                             </p>
                         </div>
                         
@@ -50,9 +50,9 @@
                             <i class="fas fa-clock me-2"></i>Horários
                         </h5>
                         <div class="mb-4">
-                            <p class="mb-1"><strong>Segunda a Sexta:</strong> ${contactInfo.hours.weekdays}</p>
-                            <p class="mb-1"><strong>Sábado:</strong> ${contactInfo.hours.saturday}</p>
-                            <p class="mb-1"><strong>Domingo:</strong> ${contactInfo.hours.sunday}</p>
+                            <p class="mb-1"><strong>Terça a Sábado:</strong> <%= contactInfo.hours.tuesdayToSaturday %></p>
+                            <p class="mb-1"><strong>Segunda:</strong> <%= contactInfo.hours.monday %></p>
+                            <p class="mb-1"><strong>Domingo:</strong> <%= contactInfo.hours.sunday %></p>
                         </div>
                     </div>
                 </div>
@@ -111,22 +111,22 @@
             </div>
         </div>
         <div class="row">
-            ${socialMedia.map(social => `
+            <% socialMedia.forEach(function(social) { %>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card huella-card h-100 text-center">
                     <div class="card-body">
                         <div class="mb-3">
-                            <i class="${social.icon} fa-3x text-huella-orange"></i>
+                            <i class="<%= social.icon %> fa-3x text-huella-orange"></i>
                         </div>
-                        <h5 class="card-title">${social.name}</h5>
-                        <p class="card-text">${social.handle}</p>
-                        <a href="${social.url}" target="_blank" class="btn btn-huella-outline">
-                            <i class="${social.icon} me-2"></i>Seguir
+                        <h5 class="card-title"><%= social.name %></h5>
+                        <p class="card-text"><%= social.handle %></p>
+                        <a href="<%= social.url %>" target="_blank" class="btn btn-huella-outline">
+                            <i class="<%= social.icon %> me-2"></i>Seguir
                         </a>
                     </div>
                 </div>
             </div>
-            `).join('')}
+            <% }); %>
         </div>
     </div>
 </section>
@@ -142,14 +142,14 @@
         </div>
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                ${faqs.map(faq => `
+                <% faqs.forEach(function(faq) { %>
                 <div class="card huella-card mb-3">
                     <div class="card-body">
-                        <h6 class="card-title text-huella-orange">${faq.question}</h6>
-                        <p class="card-text">${faq.answer}</p>
+                        <h6 class="card-title text-huella-orange"><%= faq.question %></h6>
+                        <p class="card-text"><%= faq.answer %></p>
                     </div>
                 </div>
-                `).join('')}
+                <% }); %>
                 <div class="text-center mt-4">
                     <a href="/faq" class="btn btn-huella-primary">
                         <i class="fas fa-question-circle me-2"></i>Ver Todas as Perguntas
@@ -166,7 +166,7 @@
         <div class="row">
             <div class="col-12 text-center mb-5">
                 <h2 class="text-white">Encontre-nos</h2>
-                <p class="text-white-50">Visite-nos na nossa loja em Lisboa</p>
+                <p class="text-white-50">Visite-nos na nossa loja em São Mamede Infesta, Matosinhos</p>
             </div>
         </div>
         <div class="row">
@@ -202,7 +202,7 @@
                     <a href="/loja" class="btn btn-light btn-lg">
                         <i class="fas fa-shopping-cart me-2"></i>Encomendar Agora
                     </a>
-                    <a href="tel:${contactInfo.phone}" class="btn btn-outline-light btn-lg">
+                    <a href="tel:<%= contactInfo.phone %>" class="btn btn-outline-light btn-lg">
                         <i class="fas fa-phone me-2"></i>Ligar Agora
                     </a>
                 </div>

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         questions: [
           {
             question: 'Como posso fazer uma encomenda?',
-            answer: 'Pode encomendar através da nossa loja online ou visitar-nos na nossa loja física em Lisboa. O processo é simples e rápido!'
+            answer: 'Pode encomendar através da nossa loja online ou visitar-nos na nossa loja física em São Mamede Infesta, Matosinhos. O processo é simples e rápido!'
           },
           {
             question: 'Qual é o prazo de entrega?',

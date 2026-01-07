@@ -1,66 +1,62 @@
-# 🍊 Huella Cookies Website
+# 🍪 Huella Cookies - Website Estático
 
-Website oficial da Huella Cookies - Cookies artesanais feitos com amor e ingredientes premium.
+Website estático para a Huella Cookies, feito com HTML, CSS e JavaScript puro.
 
-## 🚀 Deploy Online (Fácil)
+## 📁 Estrutura do Projeto
 
-### Opção 1: Vercel (Recomendado)
-1. Aceda a [vercel.com](https://vercel.com)
-2. Faça login com GitHub
-3. Clique em "New Project"
-4. Importe este repositório
-5. Deploy automático! ✨
-
-### Opção 2: Netlify
-1. Aceda a [netlify.com](https://netlify.com)
-2. Faça login com GitHub
-3. Clique em "New site from Git"
-4. Selecione este repositório
-5. Deploy automático! ✨
-
-### Opção 3: Heroku
-1. Aceda a [heroku.com](https://heroku.com)
-2. Crie uma conta gratuita
-3. Clique em "New" > "Create new app"
-4. Conecte com GitHub
-5. Deploy automático! ✨
-
-## 🖥️ Executar Localmente
-
-```bash
-# Instalar dependências
-npm install
-
-# Executar servidor
-npm start
-
-# Aceder ao website
-# http://localhost:3000
+```
+huella-cookies/
+├── index.html              # Página principal (SPA)
+├── public/                 # Ficheiros estáticos
+│   ├── css/               # Estilos
+│   ├── js/                # JavaScript
+│   │   ├── router.js      # Sistema de roteamento
+│   │   ├── pages.js       # Funções de renderização
+│   │   └── main.js        # Funcionalidades principais
+│   ├── img/               # Imagens
+│   └── data/              # Dados JSON (opcional)
+├── server.js              # Servidor simples (opcional)
+└── package.json           # Dependências
 ```
 
-## 📱 Funcionalidades
+## 🚀 Como Usar
 
-- ✅ Design responsivo
-- ✅ Carrinho de compras lateral
-- ✅ Sistema de navegação intuitivo
-- ✅ Páginas: Home, Sobre, Cookies, Loja, Contactos, FAQ
-- ✅ Integração com redes sociais
-- ✅ Formulários funcionais
-- ✅ Animações suaves
+### Opção 1: Abrir diretamente no navegador (Recomendado)
+1. Abra o ficheiro `index.html` diretamente no navegador
+2. O site funciona completamente offline, sem necessidade de servidor
 
-## 🎨 Tecnologias
+### Opção 2: Usar servidor local (Opcional)
+```bash
+npm install
+npm start
+```
+Depois abra `http://localhost:3000` no navegador
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Backend**: Node.js, Express.js
-- **Template Engine**: EJS
-- **Styling**: Bootstrap 5 + CSS Custom
-- **Icons**: Font Awesome
-- **Fonts**: Google Fonts (Poppins)
+## ✨ Funcionalidades
 
-## 📧 Contacto
+- ✅ **SPA (Single Page Application)** - Navegação sem recarregar a página
+- ✅ **Carrinho de Compras** - Funciona com LocalStorage
+- ✅ **Checkout Completo** - Com 4 métodos de pagamento
+- ✅ **Responsivo** - Funciona em todos os dispositivos
+- ✅ **100% Estático** - Não precisa de servidor backend
 
-Para questões sobre o projeto, contacte através dos canais oficiais da Huella.
+## 📝 Notas
 
----
+- Todos os dados estão inline no JavaScript (sem problemas de CORS)
+- O carrinho persiste no LocalStorage do navegador
+- As rotas usam hash (#) para navegação SPA
+- Não são necessários ficheiros .ejs ou rotas do Express
 
-**Desenvolvido com ❤️ por Ana - C2326**
+## 🗑️ Ficheiros Removidos
+
+Os seguintes ficheiros não são mais necessários (podem ser removidos):
+- `views/*.ejs` - Templates EJS (substituídos por funções JavaScript)
+- `routes/*.js` - Rotas Express (não necessárias para site estático)
+
+## 📦 Deploy
+
+Pode fazer deploy em qualquer plataforma de hosting estático:
+- **Vercel** - Basta fazer upload da pasta
+- **Netlify** - Drag & drop da pasta
+- **GitHub Pages** - Push para repositório
+- **Qualquer servidor web** - Apenas precisa servir ficheiros estáticos

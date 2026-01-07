@@ -8,16 +8,16 @@ router.get('/', (req, res) => {
     page: 'contact',
     contactInfo: {
       address: {
-        street: 'Rua das Flores, 123',
-        city: 'Lisboa',
-        postalCode: '1200-456',
+        street: 'Travessa Dr. Barros, nº 11',
+        city: 'São Mamede Infesta, Matosinhos',
+        postalCode: '4465-034',
         country: 'Portugal'
       },
-      phone: '+351 21 123 4567',
-      email: 'info@huella.pt',
+      phone: '934 506 306',
+      email: 'huellacookies@gmail.com',
       hours: {
-        weekdays: '09:00 - 18:00',
-        saturday: '10:00 - 16:00',
+        tuesdayToSaturday: '09:30 - 19:30',
+        monday: 'Fechado',
         sunday: 'Fechado'
       }
     },
@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
     faqs: [
       {
         question: 'Como posso fazer uma encomenda?',
-        answer: 'Pode encomendar através da nossa loja online ou visitar-nos na nossa loja física em Lisboa.'
+        answer: 'Pode encomendar através da nossa loja online ou visitar-nos na nossa loja física em São Mamede Infesta, Matosinhos.'
       },
       {
         question: 'Qual é o prazo de entrega?',
