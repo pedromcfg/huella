@@ -500,6 +500,58 @@ async function renderCookiesPage(data) {
                 </div>
             </div>
         </section>
+
+        <script>
+        // Setup contact form validation
+        (function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (!this.checkValidity()) {
+                        this.classList.add('was-validated');
+                        return;
+                    }
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        // Reset button
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Show success message
+                        const alert = document.createElement('div');
+                        alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+                        alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                        alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
+                            '<p class="mb-0">Responderemos em breve.</p>' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                        document.body.appendChild(alert);
+                        
+                        // Auto remove after 5 seconds
+                        setTimeout(() => {
+                            if (alert.parentNode) {
+                                alert.remove();
+                            }
+                        }, 5000);
+                        
+                        // Reset form
+                        this.reset();
+                        this.classList.remove('was-validated');
+                    }, 2000);
+                });
+            }
+        })();
+        </script>
     `;
 }
 
@@ -627,6 +679,10 @@ async function renderContactPage(data) {
     const contactInfo = data.site;
     const socialMedia = data.site.socialMedia;
     const faqs = data.faqs.slice(0, 4);
+    
+    // Criar URL do mapa
+    const fullAddress = `${contactInfo.address.street}, ${contactInfo.address.postalCode} ${contactInfo.address.city}, ${contactInfo.address.country}`;
+    const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
     const socialHTML = socialMedia.map(social => `
         <div class="col-lg-3 col-md-6 mb-4">
@@ -667,70 +723,67 @@ async function renderContactPage(data) {
             </div>
         </section>
 
-        <!-- Contact Information -->
+        <!-- Contact Form -->
         <section class="huella-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-4">
-                        <div class="huella-card h-100">
-                            <div class="card-body">
-                                <h3 class="card-title text-huella-green mb-4">
-                                    <i class="fas fa-map-marker-alt me-2"></i>Morada
-                                </h3>
-                                <div class="mb-4">
-                                    <p class="mb-2">
-                                        <strong>${escapeHtml(contactInfo.address.street)}</strong><br>
-                                        ${escapeHtml(contactInfo.address.postalCode)} ${escapeHtml(contactInfo.address.city)}<br>
-                                        ${escapeHtml(contactInfo.address.country)}
-                                    </p>
-                                </div>
-                                
-                                <h5 class="text-huella-orange mb-3">
-                                    <i class="fas fa-phone me-2"></i>Contactos
-                                </h5>
-                                <div class="mb-4">
-                                    <p class="mb-2">
-                                        <i class="fas fa-phone text-huella-green me-2"></i>
-                                        <a href="tel:${contactInfo.contact.phone}" class="text-decoration-none">${escapeHtml(contactInfo.contact.phone)}</a>
-                                    </p>
-                                    <p class="mb-2">
-                                        <i class="fas fa-envelope text-huella-green me-2"></i>
-                                        <a href="mailto:${contactInfo.contact.email}" class="text-decoration-none">${escapeHtml(contactInfo.contact.email)}</a>
-                                    </p>
-                                </div>
-                                
-                                <h5 class="text-huella-orange mb-3">
-                                    <i class="fas fa-clock me-2"></i>Horários
-                                </h5>
-                                <div class="mb-4">
-                                    <p class="mb-1"><strong>Terça a Sábado:</strong> ${escapeHtml(contactInfo.contact.hours.tuesdayToSaturday)}</p>
-                                    <p class="mb-1"><strong>Segunda:</strong> ${escapeHtml(contactInfo.contact.hours.monday)}</p>
-                                    <p class="mb-1"><strong>Domingo:</strong> ${escapeHtml(contactInfo.contact.hours.sunday)}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-6 mb-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 mb-4">
                         <div class="huella-card h-100">
                             <div class="card-body">
                                 <h3 class="card-title text-huella-green mb-4">
                                     <i class="fas fa-envelope me-2"></i>Envie-nos uma Mensagem
                                 </h3>
+                                
+                                <!-- Contact Quick Info -->
+                                <div class="contact-quick-info mb-4 p-3 rounded" style="background: linear-gradient(135deg, rgba(244, 122, 32, 0.1) 0%, rgba(29, 81, 46, 0.1) 100%); border-left: 4px solid var(--huella-orange);">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="contact-icon-wrapper me-3" style="width: 45px; height: 45px; background-color: var(--huella-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-phone text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <small class="text-muted d-block">Telefone</small>
+                                                    <a href="tel:${contactInfo.contact.phone}" class="text-huella-green fw-bold text-decoration-none">${escapeHtml(contactInfo.contact.phone)}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="contact-icon-wrapper me-3" style="width: 45px; height: 45px; background-color: var(--huella-green); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <i class="fas fa-envelope text-white"></i>
+                                                </div>
+                                                <div>
+                                                    <small class="text-muted d-block">Email</small>
+                                                    <a href="mailto:${contactInfo.contact.email}" class="text-huella-green fw-bold text-decoration-none">${escapeHtml(contactInfo.contact.email)}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <form id="contactForm" class="needs-validation" novalidate>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="name" class="huella-form-label">Nome *</label>
-                                            <input type="text" class="form-control huella-form-control" id="name" required>
+                                            <label for="name" class="huella-form-label">
+                                                <i class="fas fa-user me-1"></i>Nome *
+                                            </label>
+                                            <input type="text" class="form-control huella-form-control" id="name" placeholder="O seu nome completo" required>
+                                            <div class="invalid-feedback">Por favor, insira o seu nome.</div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="email" class="huella-form-label">Email *</label>
-                                            <input type="email" class="form-control huella-form-control" id="email" required>
+                                            <label for="email" class="huella-form-label">
+                                                <i class="fas fa-envelope me-1"></i>Email *
+                                            </label>
+                                            <input type="email" class="form-control huella-form-control" id="email" placeholder="seu@email.com" required>
+                                            <div class="invalid-feedback">Por favor, insira um email válido.</div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="subject" class="huella-form-label">Assunto *</label>
-                                        <select class="form-control huella-form-control" id="subject" required>
+                                        <label for="subject" class="huella-form-label">
+                                            <i class="fas fa-tag me-1"></i>Assunto *
+                                        </label>
+                                        <select class="form-select huella-form-control" id="subject" required>
                                             <option value="">Selecione um assunto</option>
                                             <option value="encomenda">Encomenda</option>
                                             <option value="duvida">Dúvida sobre produtos</option>
@@ -738,12 +791,16 @@ async function renderContactPage(data) {
                                             <option value="reclamacao">Reclamação</option>
                                             <option value="outro">Outro</option>
                                         </select>
+                                        <div class="invalid-feedback">Por favor, selecione um assunto.</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="message" class="huella-form-label">Mensagem *</label>
-                                        <textarea class="form-control huella-form-control" id="message" rows="5" required></textarea>
+                                        <label for="message" class="huella-form-label">
+                                            <i class="fas fa-comment me-1"></i>Mensagem *
+                                        </label>
+                                        <textarea class="form-control huella-form-control" id="message" rows="5" placeholder="Escreva a sua mensagem aqui..." required></textarea>
+                                        <div class="invalid-feedback">Por favor, escreva uma mensagem.</div>
                                     </div>
-                                    <button type="submit" class="btn btn-huella-primary">
+                                    <button type="submit" class="btn btn-huella-primary w-100">
                                         <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
                                     </button>
                                 </form>

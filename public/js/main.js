@@ -17,13 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== SMOOTH SCROLLING FOR ANCHOR LINKS =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const href = this.getAttribute('href');
+            // Ignorar se for apenas "#" ou "#" vazio
+            if (href && href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });
@@ -691,32 +695,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ===== CONTACT FORM SUBMISSION =====
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<span class="huella-loading me-2"></span>Enviando...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+    // Função para validar e submeter formulário de contacto
+    function setupContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            // Validação Bootstrap
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Show success message
-                showSuccessMessage('Mensagem enviada com sucesso! Responderemos em breve.');
+                if (!this.checkValidity()) {
+                    this.classList.add('was-validated');
+                    return;
+                }
                 
-                // Reset form
-                this.reset();
-                this.classList.remove('was-validated');
-            }, 2000);
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Show success message
+                    showSuccessMessage('Mensagem enviada com sucesso! Responderemos em breve.');
+                    
+                    // Reset form
+                    this.reset();
+                    this.classList.remove('was-validated');
+                }, 2000);
+            });
+        }
+    }
+    
+    // Setup contact form quando a página carregar
+    setupContactForm();
+    
+    // Re-setup quando o conteúdo mudar (SPA)
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                const contactForm = document.getElementById('contactForm');
+                if (contactForm && !contactForm.hasAttribute('data-setup')) {
+                    contactForm.setAttribute('data-setup', 'true');
+                    setupContactForm();
+                }
+            }
         });
+    });
+    
+    const appContent = document.getElementById('app-content');
+    if (appContent) {
+        observer.observe(appContent, { childList: true, subtree: true });
     }
     
     // ===== SHOP CHECKOUT =====
