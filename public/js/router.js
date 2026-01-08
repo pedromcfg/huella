@@ -24,27 +24,27 @@ const SITE_DATA = {
     "socialMedia": [
       {
         "name": "Instagram",
-        "url": "https://instagram.com/huella.cookies",
+        "url": "https://www.instagram.com/huellacookies?igsh=MW9xc2Nwdmo2dDdnYQ==",
         "icon": "fab fa-instagram",
-        "handle": "@huella.cookies"
+        "handle": "@huellacookies"
       },
       {
         "name": "TikTok",
-        "url": "https://tiktok.com/@huella.cookies",
+        "url": "https://www.tiktok.com/@huellacookies?_r=1&_t=ZG-92uYqHTIOAr",
         "icon": "fab fa-tiktok",
-        "handle": "@huella.cookies"
+        "handle": "@huellacookies"
       },
       {
         "name": "Facebook",
-        "url": "https://facebook.com/huella.cookies",
+        "url": "https://www.facebook.com/HuellaCookies?dl_redirect=1#no_universal_links",
         "icon": "fab fa-facebook",
         "handle": "Huella Cookies"
       },
       {
         "name": "YouTube",
-        "url": "https://youtube.com/@huella.cookies",
+        "url": "https://youtube.com/@huellacookies?si=lrm6nI4cYvnQWa-v",
         "icon": "fab fa-youtube",
-        "handle": "Huella Cookies"
+        "handle": "@huellacookies"
       }
     ]
   },

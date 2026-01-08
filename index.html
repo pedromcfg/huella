@@ -81,16 +81,16 @@
             <div class="mt-4 pt-4 border-top">
                 <h6 class="text-muted mb-3">Siga-nos</h6>
                 <div class="d-flex gap-3">
-                    <a href="https://instagram.com/huella.cookies" class="text-decoration-none" target="_blank">
+                    <a href="https://www.instagram.com/huellacookies?igsh=MW9xc2Nwdmo2dDdnYQ==" class="text-decoration-none" target="_blank">
                         <i class="fab fa-instagram fa-lg"></i>
                     </a>
-                    <a href="https://tiktok.com/@huella.cookies" class="text-decoration-none" target="_blank">
+                    <a href="https://www.tiktok.com/@huellacookies?_r=1&_t=ZG-92uYqHTIOAr" class="text-decoration-none" target="_blank">
                         <i class="fab fa-tiktok fa-lg"></i>
                     </a>
-                    <a href="https://facebook.com/huella.cookies" class="text-decoration-none" target="_blank">
+                    <a href="https://www.facebook.com/HuellaCookies?dl_redirect=1#no_universal_links" class="text-decoration-none" target="_blank">
                         <i class="fab fa-facebook fa-lg"></i>
                     </a>
-                    <a href="https://youtube.com/@huella.cookies" class="text-decoration-none" target="_blank">
+                    <a href="https://youtube.com/@huellacookies?si=lrm6nI4cYvnQWa-v" class="text-decoration-none" target="_blank">
                         <i class="fab fa-youtube fa-lg"></i>
                     </a>
                 </div>
@@ -141,16 +141,16 @@
                     <img src="public/img/logo/logo.png" alt="Huella" height="40" class="mb-3">
                     <p class="text-light">Cookies artesanais feitos com amor e ingredientes premium. Cada mordida é uma experiência única.</p>
                     <div class="d-flex gap-3">
-                        <a href="https://instagram.com/huella.cookies" class="text-light" target="_blank">
+                        <a href="https://www.instagram.com/huellacookies?igsh=MW9xc2Nwdmo2dDdnYQ==" class="text-light" target="_blank">
                             <i class="fab fa-instagram fa-lg"></i>
                         </a>
-                        <a href="https://tiktok.com/@huella.cookies" class="text-light" target="_blank">
+                        <a href="https://www.tiktok.com/@huellacookies?_r=1&_t=ZG-92uYqHTIOAr" class="text-light" target="_blank">
                             <i class="fab fa-tiktok fa-lg"></i>
                         </a>
-                        <a href="https://facebook.com/huella.cookies" class="text-light" target="_blank">
+                        <a href="https://www.facebook.com/HuellaCookies?dl_redirect=1#no_universal_links" class="text-light" target="_blank">
                             <i class="fab fa-facebook fa-lg"></i>
                         </a>
-                        <a href="https://youtube.com/@huella.cookies" class="text-light" target="_blank">
+                        <a href="https://youtube.com/@huellacookies?si=lrm6nI4cYvnQWa-v" class="text-light" target="_blank">
                             <i class="fab fa-youtube fa-lg"></i>
                         </a>
                     </div>
@@ -211,6 +211,9 @@
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
     <!-- Router -->
     <script src="public/js/router.js"></script>
     
@@ -219,6 +222,18 @@
     
     <!-- Custom JS -->
     <script src="public/js/main.js"></script>
+    
+    <!-- Initialize EmailJS -->
+    <script>
+        // Inicializar EmailJS quando a página carregar
+        (function() {
+            if (typeof emailjs !== 'undefined') {
+                // Substituir 'YOUR_PUBLIC_KEY' pela chave pública do EmailJS
+                // Esta chave será configurada após criar conta no EmailJS
+                emailjs.init('YOUR_PUBLIC_KEY');
+            }
+        })();
+    </script>
 </body>
 </html>
 

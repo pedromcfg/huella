@@ -502,7 +502,7 @@ async function renderCookiesPage(data) {
         </section>
 
         <script>
-        // Setup contact form validation
+        // Setup contact form with EmailJS
         (function() {
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
@@ -522,32 +522,72 @@ async function renderCookiesPage(data) {
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
                     submitBtn.disabled = true;
                     
-                    // Simulate form submission
-                    setTimeout(() => {
-                        // Reset button
+                    // Get form data
+                    const formData = {
+                        from_name: document.getElementById('name').value,
+                        from_email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value,
+                        to_email: '${contactInfo.contact.email}'
+                    };
+                    
+                    // Send email using EmailJS
+                    // IMPORTANTE: Substituir 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos valores reais do EmailJS
+                    if (typeof emailjs !== 'undefined') {
+                        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                            .then(function(response) {
+                                // Success
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                
+                                // Show success message
+                                const alert = document.createElement('div');
+                                alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                                alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
+                                    '<p class="mb-0">Responderemos em breve.</p>' +
+                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                document.body.appendChild(alert);
+                                
+                                // Auto remove after 5 seconds
+                                setTimeout(() => {
+                                    if (alert.parentNode) {
+                                        alert.remove();
+                                    }
+                                }, 5000);
+                                
+                                // Reset form
+                                contactForm.reset();
+                                contactForm.classList.remove('was-validated');
+                            }, function(error) {
+                                // Error
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                
+                                // Show error message
+                                const alert = document.createElement('div');
+                                alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
+                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                                alert.innerHTML = '<h5><i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar</h5>' +
+                                    '<p class="mb-0">Ocorreu um erro. Por favor, tente novamente ou contacte-nos diretamente.</p>' +
+                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                document.body.appendChild(alert);
+                                
+                                // Auto remove after 5 seconds
+                                setTimeout(() => {
+                                    if (alert.parentNode) {
+                                        alert.remove();
+                                    }
+                                }, 5000);
+                                
+                                console.error('EmailJS Error:', error);
+                            });
+                    } else {
+                        // Fallback se EmailJS não estiver carregado
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
-                        
-                        // Show success message
-                        const alert = document.createElement('div');
-                        alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
-                        alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
-                        alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
-                            '<p class="mb-0">Responderemos em breve.</p>' +
-                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                        document.body.appendChild(alert);
-                        
-                        // Auto remove after 5 seconds
-                        setTimeout(() => {
-                            if (alert.parentNode) {
-                                alert.remove();
-                            }
-                        }, 5000);
-                        
-                        // Reset form
-                        this.reset();
-                        this.classList.remove('was-validated');
-                    }, 2000);
+                        alert('EmailJS não está configurado. Por favor, contacte-nos diretamente em ${contactInfo.contact.email}');
+                    }
                 });
             }
         })();
