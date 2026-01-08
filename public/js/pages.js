@@ -19,7 +19,8 @@ async function renderHomePage(data) {
     
     let featuredHTML = featuredCookies.map(cookie => {
         const slug = cookie.slug || createSlug(cookie.name);
-        const priceValue = cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.'));
+        const displayPrice = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].price : cookie.price;
+        const priceValue = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].priceValue : (cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.')));
         return `
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card huella-card h-100">
@@ -32,7 +33,10 @@ async function renderHomePage(data) {
                         </a>
                         <p class="card-text flex-grow-1">${escapeHtml(cookie.description)}</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="huella-price">${escapeHtml(cookie.price)}</span>
+                            <div>
+                                <span class="huella-price">${escapeHtml(displayPrice)}</span>
+                                ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
+                            </div>
                             <div class="d-flex gap-2">
                                 <a href="#" data-route="/cookie/${slug}" class="btn btn-huella-outline btn-sm">
                                     <i class="fas fa-eye me-1"></i>Ver
@@ -50,7 +54,8 @@ async function renderHomePage(data) {
 
     let seasonalHTML = seasonalCookies.map(cookie => {
         const slug = cookie.slug || createSlug(cookie.name);
-        const priceValue = cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.'));
+        const displayPrice = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].price : cookie.price;
+        const priceValue = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].priceValue : (cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.')));
         return `
             <div class="col-lg-6 col-md-6 mb-4">
                 <div class="card huella-card h-100">
@@ -64,7 +69,10 @@ async function renderHomePage(data) {
                         <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
                         <p class="card-text flex-grow-1">${escapeHtml(cookie.description)}</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="huella-price">${escapeHtml(cookie.price)}</span>
+                            <div>
+                                <span class="huella-price">${escapeHtml(displayPrice)}</span>
+                                ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
+                            </div>
                             <button class="btn btn-huella-primary btn-sm" onclick="addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')">
                                 <i class="fas fa-plus me-1"></i>Adicionar
                             </button>
@@ -129,6 +137,16 @@ async function renderHomePage(data) {
                         <a href="#" data-route="/cookies" class="btn btn-huella-secondary">
                             <i class="fas fa-cookie-bite me-2"></i>Ver Todos os Sabores
                         </a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-info-circle me-1"></i>
+                            <a href="https://storage2.me-qr.com/pdf/649bb67c-aaa1-4b66-9a5b-85050aa47939.pdf" target="_blank" class="text-huella-green text-decoration-none">
+                                Consulte a informação nutricional completa
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -206,7 +224,7 @@ async function renderAboutPage(data) {
                     <div class="col-lg-8">
                         <h2 class="huella-title">${escapeHtml(about.ana.name)}</h2>
                         <p class="text-huella-orange fw-bold mb-3" style="font-size: 1.2rem;">${escapeHtml(about.ana.role)}</p>
-                        <p class="huella-text" style="font-size: 1.1rem; line-height: 1.8;">${escapeHtml(about.ana.biography)}</p>
+                        <div class="huella-text" style="font-size: 1.1rem; line-height: 1.8; white-space: pre-line;">${escapeHtml(about.ana.biography)}</div>
                     </div>
                 </div>
             </div>
@@ -291,7 +309,8 @@ async function renderCookiesPage(data) {
 
     const fixedHTML = fixedCookies.map(cookie => {
         const slug = cookie.slug || createSlug(cookie.name);
-        const priceValue = cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.'));
+        const displayPrice = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].price : cookie.price;
+        const priceValue = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].priceValue : (cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.')));
         const ingredientsHTML = cookie.ingredients.map(ing => `<li><i class="fas fa-check text-huella-green me-2"></i>${escapeHtml(ing)}</li>`).join('');
         return `
             <div class="col-lg-4 col-md-6 mb-4">
@@ -311,7 +330,10 @@ async function renderCookiesPage(data) {
                             </ul>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="huella-price">${escapeHtml(cookie.price)}</span>
+                            <div>
+                                <span class="huella-price">${escapeHtml(displayPrice)}</span>
+                                ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
+                            </div>
                             <div class="d-flex gap-2">
                                 <a href="#" data-route="/cookie/${slug}" class="btn btn-huella-outline btn-sm">
                                     <i class="fas fa-eye me-1"></i>Ver
@@ -329,7 +351,8 @@ async function renderCookiesPage(data) {
 
     const seasonalHTML = seasonalCookies.map(cookie => {
         const slug = cookie.slug || createSlug(cookie.name);
-        const priceValue = cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.'));
+        const displayPrice = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].price : cookie.price;
+        const priceValue = cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].priceValue : (cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.')));
         return `
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card huella-card h-100">
@@ -344,7 +367,10 @@ async function renderCookiesPage(data) {
                         <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
                         <p class="card-text flex-grow-1">${escapeHtml(cookie.description)}</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="huella-price">${escapeHtml(cookie.price)}</span>
+                            <div>
+                                <span class="huella-price">${escapeHtml(displayPrice)}</span>
+                                ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
+                            </div>
                             <button class="btn btn-huella-primary btn-sm" ${!cookie.available ? 'disabled' : ''} onclick="${cookie.available ? `addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')` : ''}">
                                 <i class="fas fa-plus me-1"></i>${cookie.available ? 'Adicionar' : 'Esgotado'}
                             </button>
@@ -431,6 +457,26 @@ async function renderCookiesPage(data) {
                 </div>
                 <div class="row">
                     ${boxesHTML}
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutritional Information -->
+        <section class="huella-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="huella-card p-4 text-center" style="background: linear-gradient(135deg, var(--huella-green) 0%, var(--huella-yellow) 100%);">
+                            <div class="mb-3">
+                                <i class="fas fa-clipboard-list text-white" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3 class="text-white mb-3">Informação Nutricional</h3>
+                            <p class="text-white mb-4">Consulte a informação nutricional completa de todos os nossos cookies, incluindo valores energéticos, macronutrientes e ingredientes detalhados.</p>
+                            <a href="https://storage2.me-qr.com/pdf/649bb67c-aaa1-4b66-9a5b-85050aa47939.pdf" target="_blank" class="btn btn-light btn-lg">
+                                <i class="fas fa-file-pdf me-2"></i>Ver Informação Nutricional Completa
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -888,7 +934,7 @@ async function renderProductPage(slug, data) {
                             <h1 class="huella-title mb-3">${escapeHtml(cookie.name)}</h1>
                             
                             <div class="d-flex align-items-center gap-3 mb-3">
-                                <span class="huella-price" style="font-size: 2rem;">${escapeHtml(cookie.price)}</span>
+                                <span class="huella-price" id="productPriceDisplay" style="font-size: 2rem;">${escapeHtml(cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].price : cookie.price)}</span>
                                 ${badgesHTML}
                             </div>
 
@@ -906,7 +952,35 @@ async function renderProductPage(slug, data) {
                                 <p class="huella-text">${escapeHtml(cookie.fullDescription || cookie.description)}</p>
                             </div>
 
+                            <div class="mb-4">
+                                <div class="huella-card p-3" style="background-color: #f8f9fa; border-left: 4px solid var(--huella-green);">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h6 class="text-huella-green mb-1">
+                                                <i class="fas fa-clipboard-list me-2"></i>Informação Nutricional
+                                            </h6>
+                                            <p class="small mb-0 text-muted">Consulte os valores nutricionais e ingredientes detalhados</p>
+                                        </div>
+                                        <a href="https://storage2.me-qr.com/pdf/649bb67c-aaa1-4b66-9a5b-85050aa47939.pdf" target="_blank" class="btn btn-huella-outline btn-sm">
+                                            <i class="fas fa-file-pdf me-1"></i>Ver PDF
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="product-actions mb-4">
+                                ${cookie.hasWeightOptions && cookie.prices ? `
+                                <div class="mb-3">
+                                    <label class="text-huella-green fw-bold mb-2 d-block">Peso:</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="productWeight" id="weight40g" value="40g" autocomplete="off" onchange="updateProductPrice('40g', ${cookie.prices['40g'].priceValue})">
+                                        <label class="btn btn-outline-huella-orange" for="weight40g">40g - ${escapeHtml(cookie.prices['40g'].price)}</label>
+                                        
+                                        <input type="radio" class="btn-check" name="productWeight" id="weight80g" value="80g" autocomplete="off" checked onchange="updateProductPrice('80g', ${cookie.prices['80g'].priceValue})">
+                                        <label class="btn btn-outline-huella-orange active" for="weight80g">80g - ${escapeHtml(cookie.prices['80g'].price)}</label>
+                                    </div>
+                                </div>
+                                ` : ''}
                                 <div class="d-flex align-items-center gap-3 mb-3">
                                     <label class="text-huella-green fw-bold">Quantidade:</label>
                                     <div class="quantity-selector d-flex align-items-center gap-2">
@@ -1005,9 +1079,23 @@ async function renderProductPage(slug, data) {
         const productData = {
             id: '${cookie.slug}',
             name: '${escapeHtml(cookie.name).replace(/'/g, "\\'")}',
-            price: ${cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.'))},
-            image: '${cookie.image}'
+            price: ${cookie.hasWeightOptions && cookie.prices ? cookie.prices['80g'].priceValue : (cookie.priceValue || parseFloat(cookie.price.replace('€', '').replace(',', '.')))},
+            image: '${cookie.image}',
+            hasWeightOptions: ${cookie.hasWeightOptions ? 'true' : 'false'},
+            prices: ${cookie.hasWeightOptions && cookie.prices ? JSON.stringify(cookie.prices) : 'null'}
         };
+        
+        // Definir peso padrão (80g se disponível)
+        let selectedWeight = '80g';
+        if (productData.hasWeightOptions && productData.prices) {
+            selectedWeight = '80g';
+        }
+        
+        function updateProductPrice(weight, priceValue) {
+            selectedWeight = weight;
+            productData.price = priceValue;
+            document.getElementById('productPriceDisplay').textContent = productData.prices[weight].price;
+        }
 
         function changeMainImage(imageSrc, element) {
             document.getElementById('mainProductImage').src = imageSrc;
@@ -1041,7 +1129,9 @@ async function renderProductPage(slug, data) {
 
         function addToCartFromProduct() {
             const quantity = parseInt(document.getElementById('productQuantity').value);
-            addToCart(productData.id, productData.name, productData.price, productData.image, quantity);
+            const weight = productData.hasWeightOptions ? selectedWeight : null;
+            const productName = weight ? productData.name + ' (' + weight + ')' : productData.name;
+            addToCart(productData.id, productName, productData.price, productData.image, quantity, weight);
             
             // Mostrar feedback
             const btn = event.target;

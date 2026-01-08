@@ -330,6 +330,26 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-outline-huella-orange {
+    background-color: transparent;
+    border: 2px solid var(--huella-orange);
+    color: var(--huella-orange);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-huella-orange:hover {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+}
+
+.btn-check:checked + .btn-outline-huella-orange {
+    background-color: var(--huella-orange);
+    color: var(--huella-white);
+    border-color: var(--huella-orange);
+}
+
 /* ===== CARDS ===== */
 .huella-card {
     background-color: var(--huella-white);

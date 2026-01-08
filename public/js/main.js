@@ -59,24 +59,30 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartDisplay();
     
     // Add to cart function
-    window.addToCart = function(productId, productName, productPrice, productImage) {
-        const existingItem = cart.find(item => item.id === productId);
+    window.addToCart = function(productId, productName, productPrice, productImage, quantity = 1, weight = null) {
+        // Criar ID único incluindo peso se disponível
+        const uniqueId = weight ? `${productId}_${weight}` : productId;
+        const displayName = weight ? productName : productName;
+        
+        const existingItem = cart.find(item => item.id === uniqueId);
         
         if (existingItem) {
-            existingItem.quantity += 1;
+            existingItem.quantity += quantity;
         } else {
             cart.push({
-                id: productId,
-                name: productName,
+                id: uniqueId,
+                name: displayName,
                 price: productPrice,
                 image: productImage,
-                quantity: 1
+                quantity: quantity,
+                weight: weight
             });
         }
         
         localStorage.setItem('huellaCart', JSON.stringify(cart));
         updateCartCount();
-        showCartNotification(productName);
+        updateCartDisplay();
+        showCartNotification(displayName);
     }
     
     // Update cart count in navbar

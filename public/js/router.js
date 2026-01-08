@@ -57,6 +57,11 @@ const SITE_DATA = {
         "fullDescription": "O nosso cookie tradicional é a base perfeita para quem adora o clássico sabor de chocolate chip. Com uma massa cremosa e suave, cada mordida revela pepitas generosas de chocolate que derretem na boca. A adição de canela e sal cria um equilíbrio perfeito entre doce e salgado, tornando este cookie irresistível.",
         "price": "2.50€",
         "priceValue": 2.50,
+        "prices": {
+          "40g": { "price": "1.25€", "priceValue": 1.25 },
+          "80g": { "price": "2.50€", "priceValue": 2.50 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/cookies/Tradicional/1.jpg",
         "images": [
           "public/img/cookies/cookies/Tradicional/1.jpg",
@@ -75,6 +80,11 @@ const SITE_DATA = {
         "fullDescription": "Uma combinação única que surpreende o paladar! A frescura da laranja combina perfeitamente com a riqueza do chocolate, criando uma experiência de sabor inesquecível. A massa é especialmente macia e equilibrada, garantindo que cada mordida seja uma explosão de sabores harmoniosos.",
         "price": "2.50€",
         "priceValue": 2.50,
+        "prices": {
+          "40g": { "price": "1.25€", "priceValue": 1.25 },
+          "80g": { "price": "2.50€", "priceValue": 2.50 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/cookies/Laranja e Chocolate/1.jpg",
         "images": [
           "public/img/cookies/cookies/Laranja e Chocolate/1.jpg",
@@ -95,6 +105,11 @@ const SITE_DATA = {
         "fullDescription": "Para os amantes de sabores refrescantes! Este cookie combina a acidez do limão com a textura única da chia, criando uma experiência sensorial única. Crocante por fora e macio por dentro, cada mordida é uma surpresa. Perfeito para quem procura algo diferente mas igualmente delicioso.",
         "price": "2.50€",
         "priceValue": 2.50,
+        "prices": {
+          "40g": { "price": "1.25€", "priceValue": 1.25 },
+          "80g": { "price": "2.50€", "priceValue": 2.50 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/cookies/Limão e Chia/1.jpg",
         "images": [
           "public/img/cookies/cookies/Limão e Chia/1.jpg",
@@ -115,6 +130,11 @@ const SITE_DATA = {
         "fullDescription": "O paraíso para os chocólatras! Este cookie de duplo chocolate é feito com cacau de alta qualidade e pepitas generosas de chocolate, criando uma experiência intensa e indulgente. A massa é rica e cremosa, garantindo que cada mordida seja uma verdadeira celebração do sabor do chocolate.",
         "price": "2.50€",
         "priceValue": 2.50,
+        "prices": {
+          "40g": { "price": "1.25€", "priceValue": 1.25 },
+          "80g": { "price": "2.50€", "priceValue": 2.50 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/cookies/Duplo Chocolate/1.jpg",
         "images": [
           "public/img/cookies/cookies/Duplo Chocolate/1.jpg",
@@ -135,6 +155,11 @@ const SITE_DATA = {
         "fullDescription": "Uma criação única e inovadora! Este cookie combina a textura cremosa do grão-de-bico com a riqueza da manteiga de amendoim, criando um sabor complexo e satisfatório. Perfeito para quem procura algo diferente mas igualmente delicioso. A massa cremosa é ideal para acompanhar uma bebida vegetal quente ou fria.",
         "price": "2.50€",
         "priceValue": 2.50,
+        "prices": {
+          "40g": { "price": "1.25€", "priceValue": 1.25 },
+          "80g": { "price": "2.50€", "priceValue": 2.50 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/5.jpg",
         "images": ["public/img/cookies/5.jpg"],
         "ingredients": ["🍫 Pepitas de Chocolate", "🌰 Grão-de-Bico", "🌿 Canela", "🧂 Sal"],
@@ -152,6 +177,11 @@ const SITE_DATA = {
         "fullDescription": "A elegância do red velvet em formato de cookie! Este cookie especial combina o sabor único do red velvet com uma textura cremosa e indulgente. Perfeito para ocasiões especiais ou para quem quer tratar-se com algo verdadeiramente especial.",
         "price": "3.25€",
         "priceValue": 3.25,
+        "prices": {
+          "40g": { "price": "1.70€", "priceValue": 1.70 },
+          "80g": { "price": "3.25€", "priceValue": 3.25 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/6.jpg",
         "images": ["public/img/cookies/6.jpg"],
         "ingredients": ["🍰 Red Velvet", "🍫 Chocolate"],
@@ -168,6 +198,11 @@ const SITE_DATA = {
         "fullDescription": "Uma combinação de luxo! O sabor elegante do red velvet encontra-se com a riqueza das avelãs tostadas, criando uma experiência de sabor sofisticada e indulgente. Cada mordida revela camadas de sabor que se complementam perfeitamente.",
         "price": "3.25€",
         "priceValue": 3.25,
+        "prices": {
+          "40g": { "price": "1.70€", "priceValue": 1.70 },
+          "80g": { "price": "3.25€", "priceValue": 3.25 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/7.jpg",
         "images": ["public/img/cookies/7.jpg"],
         "ingredients": ["🍰 Red Velvet", "🌰 Avelãs Tostadas", "🍫 Chocolate"],
@@ -184,6 +219,11 @@ const SITE_DATA = {
         "fullDescription": "Para os amantes de sabores intensos! Este cookie combina a riqueza do cacau com a textura crocante das avelãs, criando uma experiência de sabor profunda e satisfatória. Cada mordida é uma celebração dos sabores mais ricos e intensos.",
         "price": "3.25€",
         "priceValue": 3.25,
+        "prices": {
+          "40g": { "price": "1.70€", "priceValue": 1.70 },
+          "80g": { "price": "3.25€", "priceValue": 3.25 }
+        },
+        "hasWeightOptions": true,
         "image": "public/img/cookies/8.jpg",
         "images": ["public/img/cookies/8.jpg"],
         "ingredients": ["🌰 Avelãs", "🍫 Cacau", "🍫 Chocolate"],
@@ -220,7 +260,7 @@ const SITE_DATA = {
       "name": "Ana Ribeiro",
       "role": "Fundadora & Criadora",
       "image": "public/img/ana-ribeiro.jpg",
-      "biography": "Sou a Ana Ribeiro, a criadora por trás da Huella. A minha paixão pela culinária começou na cozinha da minha avó, onde aprendi que cada receita conta uma história. Com formação em nutrição e um amor profundo pela pastelaria artesanal, decidi criar algo único: cookies que não só sabem bem, mas que também respeitam o planeta e todos os seres vivos. Cada cookie que crio é feito com dedicação, ingredientes cuidadosamente selecionados e, acima de tudo, muito amor. A Huella é mais do que um negócio para mim - é uma forma de partilhar os meus valores e criar momentos especiais para quem prova os meus cookies."
+      "biography": "A Huella surgiu da necessidade de conciliar prazer, saúde e responsabilidade ética na categoria de produtos de pastelaria. Fundada por mim, Ana Ribeiro, a marca nasceu a partir de experiências em cozinha caseira e de uma crescente preocupação com o impacto ambiental e animal associado ao consumo de produtos tradicionais de pastelaria, deste modo, alinhei os meus valores pessoais com a minha marca, tendo em conta que sou vegetariana. O objetivo central sempre foi claro: desenvolver cookies 100% de origem vegetal, capazes de oferecer uma experiência sensorial tão rica quanto a dos cookies clássicos, mas com uma pegada mais consciente.\n\nAo longo do processo de criação, foram testadas e aperfeiçoadas diversas receitas, substituindo ingredientes de origem animal por alternativas vegetais, sem comprometer sabor, textura ou qualidade. O resultado são cookies vegan produzidos de forma artesanal, com ingredientes selecionados e foco na consistência. Huella Cookies posiciona-se, assim, como uma marca de cookies artesanais 100% plant based que prova que é possível ter prazer máximo com responsabilidade, oferecendo indulgência \"sem culpa\" graças a uma combinação única de formato american cookie, pegada ambiental reduzida e uma abordagem moderna, próxima e divertida ao veganismo."
     },
     "mission": {
       "title": "Missão",
