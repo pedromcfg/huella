@@ -182,8 +182,13 @@ const SITE_DATA = {
           "80g": { "price": "3.25€", "priceValue": 3.25 }
         },
         "hasWeightOptions": true,
-        "image": "public/img/cookies/6.jpg",
-        "images": ["public/img/cookies/6.jpg"],
+        "image": "public/img/cookies/cookies/Red Velvet/1.jpg",
+        "images": [
+          "public/img/cookies/cookies/Red Velvet/1.jpg",
+          "public/img/cookies/cookies/Red Velvet/2.jpg",
+          "public/img/cookies/cookies/Red Velvet/3.jpg",
+          "public/img/cookies/cookies/Red Velvet/4.jpg"
+        ],
         "ingredients": ["🍰 Red Velvet", "🍫 Chocolate"],
         "category": "especial",
         "season": "Edição Especial",
@@ -389,16 +394,21 @@ async function renderPage(route) {
     try {
         const data = await loadSiteData();
         
-        // Verificar se é uma página de produto
-        if (route.startsWith('/cookie/')) {
-            const slug = route.replace('/cookie/', '');
-            if (typeof renderProductPage !== 'undefined') {
-                content.innerHTML = await renderProductPage(slug, data);
-            } else {
-                content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
-            }
-            return;
-        }
+               // Verificar se é uma página de produto
+               if (route.startsWith('/cookie/')) {
+                   const slug = route.replace('/cookie/', '');
+                   if (typeof renderProductPage !== 'undefined') {
+                       content.innerHTML = await renderProductPage(slug, data);
+                       // Scroll para o topo quando carregar página de produto
+                       // Pequeno delay para garantir que o conteúdo foi renderizado
+                       setTimeout(() => {
+                           window.scrollTo({ top: 0, behavior: 'smooth' });
+                       }, 100);
+                   } else {
+                       content.innerHTML = '<div class="container py-5"><h1>Carregando...</h1></div>';
+                   }
+                   return;
+               }
 
         // Renderizar página baseada na rota
         switch(route) {

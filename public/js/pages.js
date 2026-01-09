@@ -60,22 +60,31 @@ async function renderHomePage(data) {
             <div class="col-lg-6 col-md-6 mb-4">
                 <div class="card huella-card h-100">
                     <div class="position-relative">
-                        <img src="${cookie.image}" class="card-img-top" alt="${escapeHtml(cookie.name)}">
+                        <a href="#" data-route="/cookie/${slug}" class="text-decoration-none">
+                            <img src="${cookie.image}" class="card-img-top" alt="${escapeHtml(cookie.name)}" style="cursor: pointer;">
+                        </a>
                         <span class="position-absolute top-0 end-0 m-2 huella-badge huella-badge-seasonal">
                             <i class="fas fa-star me-1"></i>${escapeHtml(cookie.season || 'Edição Especial')}
                         </span>
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
+                        <a href="#" data-route="/cookie/${slug}" class="text-decoration-none">
+                            <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
+                        </a>
                         <p class="card-text flex-grow-1">${escapeHtml(cookie.description)}</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <div>
                                 <span class="huella-price">${escapeHtml(displayPrice)}</span>
                                 ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
                             </div>
-                            <button class="btn btn-huella-primary btn-sm" onclick="addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')">
-                                <i class="fas fa-plus me-1"></i>Adicionar
-                            </button>
+                            <div class="d-flex gap-2">
+                                <a href="#" data-route="/cookie/${slug}" class="btn btn-huella-outline btn-sm">
+                                    <i class="fas fa-eye me-1"></i>Ver
+                                </a>
+                                <button class="btn btn-huella-primary btn-sm" onclick="addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')">
+                                    <i class="fas fa-plus me-1"></i>Adicionar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,7 +228,7 @@ async function renderAboutPage(data) {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                        <img src="${about.ana.image}" alt="${escapeHtml(about.ana.name)}" class="img-fluid rounded-circle huella-card" style="width: 300px; height: 300px; object-fit: cover; border: 5px solid var(--huella-orange);">
+                        ${about.ana.image ? `<img src="${about.ana.image}" alt="${escapeHtml(about.ana.name)}" class="img-fluid rounded-circle huella-card" style="width: 300px; height: 300px; object-fit: cover; border: 5px solid var(--huella-orange);">` : ''}
                     </div>
                     <div class="col-lg-8">
                         <h2 class="huella-title">${escapeHtml(about.ana.name)}</h2>
@@ -357,23 +366,32 @@ async function renderCookiesPage(data) {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card huella-card h-100">
                     <div class="position-relative">
-                        <img src="${cookie.image}" class="card-img-top" alt="${escapeHtml(cookie.name)}">
+                        <a href="#" data-route="/cookie/${slug}" class="text-decoration-none">
+                            <img src="${cookie.image}" class="card-img-top" alt="${escapeHtml(cookie.name)}" style="cursor: pointer;">
+                        </a>
                         <span class="position-absolute top-0 end-0 m-2 huella-badge huella-badge-seasonal">
                             <i class="fas fa-star me-1"></i>${escapeHtml(cookie.season || 'Edição Especial')}
                         </span>
                         ${!cookie.available ? '<span class="position-absolute top-0 start-0 m-2 huella-badge bg-secondary">Esgotado</span>' : ''}
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
+                        <a href="#" data-route="/cookie/${slug}" class="text-decoration-none">
+                            <h5 class="card-title">${escapeHtml(cookie.name)}</h5>
+                        </a>
                         <p class="card-text flex-grow-1">${escapeHtml(cookie.description)}</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <div>
                                 <span class="huella-price">${escapeHtml(displayPrice)}</span>
                                 ${cookie.hasWeightOptions && cookie.prices ? `<small class="text-muted d-block">(80g - ver opções)</small>` : ''}
                             </div>
-                            <button class="btn btn-huella-primary btn-sm" ${!cookie.available ? 'disabled' : ''} onclick="${cookie.available ? `addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')` : ''}">
-                                <i class="fas fa-plus me-1"></i>${cookie.available ? 'Adicionar' : 'Esgotado'}
-                            </button>
+                            <div class="d-flex gap-2">
+                                <a href="#" data-route="/cookie/${slug}" class="btn btn-huella-outline btn-sm">
+                                    <i class="fas fa-eye me-1"></i>Ver
+                                </a>
+                                <button class="btn btn-huella-primary btn-sm" ${!cookie.available ? 'disabled' : ''} onclick="${cookie.available ? `addToCart('${slug}', '${escapeHtml(cookie.name)}', ${priceValue}, '${cookie.image}')` : ''}">
+                                    <i class="fas fa-plus me-1"></i>Adicionar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -500,98 +518,6 @@ async function renderCookiesPage(data) {
                 </div>
             </div>
         </section>
-
-        <script>
-        // Setup contact form with EmailJS
-        (function() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    if (!this.checkValidity()) {
-                        this.classList.add('was-validated');
-                        return;
-                    }
-                    
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    // Show loading state
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    // Get form data
-                    const formData = {
-                        from_name: document.getElementById('name').value,
-                        from_email: document.getElementById('email').value,
-                        subject: document.getElementById('subject').value,
-                        message: document.getElementById('message').value,
-                        to_email: '${contactInfo.contact.email}'
-                    };
-                    
-                    // Send email using EmailJS
-                    // IMPORTANTE: Substituir 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos valores reais do EmailJS
-                    if (typeof emailjs !== 'undefined') {
-                        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-                            .then(function(response) {
-                                // Success
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                                
-                                // Show success message
-                                const alert = document.createElement('div');
-                                alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
-                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
-                                alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
-                                    '<p class="mb-0">Responderemos em breve.</p>' +
-                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                                document.body.appendChild(alert);
-                                
-                                // Auto remove after 5 seconds
-                                setTimeout(() => {
-                                    if (alert.parentNode) {
-                                        alert.remove();
-                                    }
-                                }, 5000);
-                                
-                                // Reset form
-                                contactForm.reset();
-                                contactForm.classList.remove('was-validated');
-                            }, function(error) {
-                                // Error
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                                
-                                // Show error message
-                                const alert = document.createElement('div');
-                                alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
-                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
-                                alert.innerHTML = '<h5><i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar</h5>' +
-                                    '<p class="mb-0">Ocorreu um erro. Por favor, tente novamente ou contacte-nos diretamente.</p>' +
-                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                                document.body.appendChild(alert);
-                                
-                                // Auto remove after 5 seconds
-                                setTimeout(() => {
-                                    if (alert.parentNode) {
-                                        alert.remove();
-                                    }
-                                }, 5000);
-                                
-                                console.error('EmailJS Error:', error);
-                            });
-                    } else {
-                        // Fallback se EmailJS não estiver carregado
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        alert('EmailJS não está configurado. Por favor, contacte-nos diretamente em ${contactInfo.contact.email}');
-                    }
-                });
-            }
-        })();
-        </script>
     `;
 }
 
@@ -938,6 +864,89 @@ async function renderContactPage(data) {
                 </div>
             </div>
         </section>
+
+        <script>
+        // Setup contact form with EmailJS
+        (function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (!this.checkValidity()) {
+                        this.classList.add('was-validated');
+                        return;
+                    }
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    // Send email using EmailJS
+                    // IMPORTANTE: Substituir 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos valores reais do EmailJS
+                    if (typeof emailjs !== 'undefined') {
+                        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                            .then(function(response) {
+                                // Success
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                
+                                // Show success message
+                                const alert = document.createElement('div');
+                                alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                                alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
+                                    '<p class="mb-0">Responderemos em breve.</p>' +
+                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                document.body.appendChild(alert);
+                                
+                                // Auto remove after 5 seconds
+                                setTimeout(() => {
+                                    if (alert.parentNode) {
+                                        alert.remove();
+                                    }
+                                }, 5000);
+                                
+                                // Reset form
+                                contactForm.reset();
+                                contactForm.classList.remove('was-validated');
+                            }, function(error) {
+                                // Error
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                
+                                // Show error message
+                                const alert = document.createElement('div');
+                                alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
+                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                                alert.innerHTML = '<h5><i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar</h5>' +
+                                    '<p class="mb-0">Ocorreu um erro. Por favor, tente novamente ou contacte-nos diretamente.</p>' +
+                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                                document.body.appendChild(alert);
+                                
+                                // Auto remove after 5 seconds
+                                setTimeout(() => {
+                                    if (alert.parentNode) {
+                                        alert.remove();
+                                    }
+                                }, 5000);
+                                
+                                console.error('EmailJS Error:', error);
+                            });
+                    } else {
+                        // Fallback se EmailJS não estiver carregado
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        alert('EmailJS não está configurado. Por favor, contacte-nos diretamente em ${contactInfo.contact.email}');
+                    }
+                });
+            }
+        })();
+        </script>
     `;
 }
 
@@ -950,9 +959,18 @@ async function renderProductPage(slug, data) {
         return await render404Page();
     }
 
-    const relatedCookies = allCookies
+    // Primeiro, tentar encontrar produtos da mesma categoria
+    let relatedCookies = allCookies
         .filter(c => c.slug !== slug && c.category === cookie.category)
         .slice(0, 3);
+    
+    // Se não houver suficientes da mesma categoria, adicionar de outras categorias
+    if (relatedCookies.length < 3) {
+        const otherCookies = allCookies
+            .filter(c => c.slug !== slug && !relatedCookies.some(rc => rc.slug === c.slug))
+            .slice(0, 3 - relatedCookies.length);
+        relatedCookies = [...relatedCookies, ...otherCookies];
+    }
 
     const imagesHTML = cookie.images && cookie.images.length > 1 ? cookie.images.map((img, index) => `
         <img src="${img}" alt="${escapeHtml(cookie.name)} - Imagem ${index + 1}" 
