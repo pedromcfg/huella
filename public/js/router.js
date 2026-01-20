@@ -264,7 +264,7 @@ const SITE_DATA = {
     "ana": {
       "name": "Ana Ribeiro",
       "role": "Fundadora & Criadora",
-      "image": "public/img/ana-ribeiro.jpg",
+      "image": "public/img/ana.jpg",
       "biography": "A Huella surgiu da necessidade de conciliar prazer, saúde e responsabilidade ética na categoria de produtos de pastelaria. Fundada por mim, Ana Ribeiro, a marca nasceu a partir de experiências em cozinha caseira e de uma crescente preocupação com o impacto ambiental e animal associado ao consumo de produtos tradicionais de pastelaria, deste modo, alinhei os meus valores pessoais com a minha marca, tendo em conta que sou vegetariana. O objetivo central sempre foi claro: desenvolver cookies 100% de origem vegetal, capazes de oferecer uma experiência sensorial tão rica quanto a dos cookies clássicos, mas com uma pegada mais consciente.\n\nAo longo do processo de criação, foram testadas e aperfeiçoadas diversas receitas, substituindo ingredientes de origem animal por alternativas vegetais, sem comprometer sabor, textura ou qualidade. O resultado são cookies vegan produzidos de forma artesanal, com ingredientes selecionados e foco na consistência. Huella Cookies posiciona-se, assim, como uma marca de cookies artesanais 100% plant based que prova que é possível ter prazer máximo com responsabilidade, oferecendo indulgência \"sem culpa\" graças a uma combinação única de formato american cookie, pegada ambiental reduzida e uma abordagem moderna, próxima e divertida ao veganismo."
     },
     "mission": {
@@ -534,6 +534,135 @@ async function render404Page() {
 
 function initializePageScripts(route) {
     // Inicializar scripts específicos da página se necessário
+    if (route === '/contactos') {
+        // Aguardar um pouco para garantir que o DOM foi atualizado
+        setTimeout(() => {
+            setupContactForm();
+        }, 100);
+    }
+}
+
+// Função para configurar o formulário de contacto
+function setupContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) {
+        console.warn('Formulário de contacto não encontrado');
+        return;
+    }
+    
+    // Remover event listeners anteriores se existirem
+    const newForm = contactForm.cloneNode(true);
+    contactForm.parentNode.replaceChild(newForm, contactForm);
+    
+    // Verificar se EmailJS está disponível
+    console.log('🔍 Verificando EmailJS...');
+    console.log('EmailJS disponível?', typeof emailjs !== 'undefined');
+    
+    if (typeof emailjs === 'undefined') {
+        console.error('❌ EmailJS não está carregado!');
+        return;
+    }
+    
+    // Obter dados de contacto
+    const contactInfo = SITE_DATA?.site?.contact;
+    if (!contactInfo) {
+        console.error('❌ Dados de contacto não encontrados');
+        return;
+    }
+    
+    // Adicionar event listener ao formulário
+    newForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log('📝 Formulário submetido');
+        
+        if (!this.checkValidity()) {
+            console.log('⚠️ Formulário inválido');
+            this.classList.add('was-validated');
+            return;
+        }
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Verificar dados do formulário
+        const formData = {
+            name: this.querySelector('[name="name"]')?.value,
+            email: this.querySelector('[name="email"]')?.value,
+            title: this.querySelector('[name="title"]')?.value,
+            message: this.querySelector('[name="message"]')?.value
+        };
+        console.log('📋 Dados do formulário:', formData);
+        console.log('🔧 Service ID: service_so97otp');
+        console.log('🔧 Template ID: template_ptenttp');
+        
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+        submitBtn.disabled = true;
+        
+        // Send email using EmailJS
+        console.log('📧 A enviar email através do EmailJS...');
+        emailjs.sendForm('service_so97otp', 'template_ptenttp', this)
+            .then(function(response) {
+                console.log('✅ EmailJS Success!', response);
+                console.log('Status:', response.status);
+                console.log('Text:', response.text);
+                
+                // Success
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success message
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
+                    '<p class="mb-0">Responderemos em breve.</p>' +
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                document.body.appendChild(alert);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.remove();
+                    }
+                }, 5000);
+                
+                // Reset form
+                newForm.reset();
+                newForm.classList.remove('was-validated');
+            }, function(error) {
+                console.error('❌ EmailJS Error completo:', error);
+                console.error('Status:', error.status);
+                console.error('Text:', error.text);
+                console.error('Error object:', JSON.stringify(error, null, 2));
+                
+                // Error
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Show error message with details
+                const errorMsg = error.text || 'Erro desconhecido';
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
+                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
+                alert.innerHTML = '<h5><i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar</h5>' +
+                    '<p class="mb-0"><strong>Erro:</strong> ' + errorMsg + '</p>' +
+                    '<p class="mb-0 small mt-2">Abra a consola do navegador (F12) para mais detalhes.</p>' +
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                document.body.appendChild(alert);
+                
+                // Auto remove after 8 seconds
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.remove();
+                    }
+                }, 8000);
+            });
+    });
+    
+    console.log('✅ Formulário de contacto configurado com sucesso');
 }
 
 // Event listeners

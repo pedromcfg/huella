@@ -479,6 +479,50 @@ async function renderCookiesPage(data) {
             </div>
         </section>
 
+        <!-- Box Gallery -->
+        <section class="huella-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <h2 class="huella-title">As Nossas Caixas</h2>
+                        <p class="huella-text">Veja como são as nossas caixas, disponíveis em diferentes tamanhos</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/1.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/2.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/3.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/4.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/5.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="huella-card overflow-hidden">
+                            <img src="public/img/cookies/cookies/Caixa/6.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Nutritional Information -->
         <section class="huella-section">
             <div class="container">
@@ -734,14 +778,14 @@ async function renderContactPage(data) {
                                             <label for="name" class="huella-form-label">
                                                 <i class="fas fa-user me-1"></i>Nome *
                                             </label>
-                                            <input type="text" class="form-control huella-form-control" id="name" placeholder="O seu nome completo" required>
+                                            <input type="text" class="form-control huella-form-control" id="name" name="name" placeholder="O seu nome completo" required>
                                             <div class="invalid-feedback">Por favor, insira o seu nome.</div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="email" class="huella-form-label">
                                                 <i class="fas fa-envelope me-1"></i>Email *
                                             </label>
-                                            <input type="email" class="form-control huella-form-control" id="email" placeholder="seu@email.com" required>
+                                            <input type="email" class="form-control huella-form-control" id="email" name="email" placeholder="seu@email.com" required>
                                             <div class="invalid-feedback">Por favor, insira um email válido.</div>
                                         </div>
                                     </div>
@@ -749,7 +793,7 @@ async function renderContactPage(data) {
                                         <label for="subject" class="huella-form-label">
                                             <i class="fas fa-tag me-1"></i>Assunto *
                                         </label>
-                                        <select class="form-select huella-form-control" id="subject" required>
+                                        <select class="form-select huella-form-control" id="subject" name="title" required>
                                             <option value="">Selecione um assunto</option>
                                             <option value="encomenda">Encomenda</option>
                                             <option value="duvida">Dúvida sobre produtos</option>
@@ -763,7 +807,7 @@ async function renderContactPage(data) {
                                         <label for="message" class="huella-form-label">
                                             <i class="fas fa-comment me-1"></i>Mensagem *
                                         </label>
-                                        <textarea class="form-control huella-form-control" id="message" rows="5" placeholder="Escreva a sua mensagem aqui..." required></textarea>
+                                        <textarea class="form-control huella-form-control" id="message" name="message" rows="5" placeholder="Escreva a sua mensagem aqui..." required></textarea>
                                         <div class="invalid-feedback">Por favor, escreva uma mensagem.</div>
                                     </div>
                                     <button type="submit" class="btn btn-huella-primary w-100">
@@ -864,89 +908,6 @@ async function renderContactPage(data) {
                 </div>
             </div>
         </section>
-
-        <script>
-        // Setup contact form with EmailJS
-        (function() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    if (!this.checkValidity()) {
-                        this.classList.add('was-validated');
-                        return;
-                    }
-                    
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    
-                    // Show loading state
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    // Send email using EmailJS
-                    // IMPORTANTE: Substituir 'YOUR_SERVICE_ID' e 'YOUR_TEMPLATE_ID' pelos valores reais do EmailJS
-                    if (typeof emailjs !== 'undefined') {
-                        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-                            .then(function(response) {
-                                // Success
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                                
-                                // Show success message
-                                const alert = document.createElement('div');
-                                alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
-                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
-                                alert.innerHTML = '<h5><i class="fas fa-check-circle me-2"></i>Mensagem Enviada!</h5>' +
-                                    '<p class="mb-0">Responderemos em breve.</p>' +
-                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                                document.body.appendChild(alert);
-                                
-                                // Auto remove after 5 seconds
-                                setTimeout(() => {
-                                    if (alert.parentNode) {
-                                        alert.remove();
-                                    }
-                                }, 5000);
-                                
-                                // Reset form
-                                contactForm.reset();
-                                contactForm.classList.remove('was-validated');
-                            }, function(error) {
-                                // Error
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                                
-                                // Show error message
-                                const alert = document.createElement('div');
-                                alert.className = 'alert alert-danger alert-dismissible fade show position-fixed';
-                                alert.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 350px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);';
-                                alert.innerHTML = '<h5><i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar</h5>' +
-                                    '<p class="mb-0">Ocorreu um erro. Por favor, tente novamente ou contacte-nos diretamente.</p>' +
-                                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                                document.body.appendChild(alert);
-                                
-                                // Auto remove after 5 seconds
-                                setTimeout(() => {
-                                    if (alert.parentNode) {
-                                        alert.remove();
-                                    }
-                                }, 5000);
-                                
-                                console.error('EmailJS Error:', error);
-                            });
-                    } else {
-                        // Fallback se EmailJS não estiver carregado
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        alert('EmailJS não está configurado. Por favor, contacte-nos diretamente em ${contactInfo.contact.email}');
-                    }
-                });
-            }
-        })();
-        </script>
     `;
 }
 
