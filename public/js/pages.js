@@ -199,17 +199,6 @@ async function renderAboutPage(data) {
         </div>
     `).join('');
 
-    const veganReasonsHTML = about.veganReason.reasons.map(reason => `
-        <div class="col-lg-6 mb-4">
-            <div class="huella-card h-100 p-4">
-                <h5 class="text-huella-orange mb-3">
-                    <i class="fas fa-heart me-2"></i>${escapeHtml(reason.title)}
-                </h5>
-                <p class="huella-text">${escapeHtml(reason.text)}</p>
-            </div>
-        </div>
-    `).join('');
-
     return `
         <!-- Hero Section -->
         <section class="huella-hero">
@@ -269,21 +258,6 @@ async function renderAboutPage(data) {
                 </div>
                 <div class="row">
                     ${valuesHTML}
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Vegan Section -->
-        <section class="huella-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center mb-5">
-                        <h2 class="huella-title">${escapeHtml(about.veganReason.title)}</h2>
-                        <p class="huella-text lead">${escapeHtml(about.veganReason.description)}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    ${veganReasonsHTML}
                 </div>
             </div>
         </section>
