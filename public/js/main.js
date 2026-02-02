@@ -1002,6 +1002,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.position-fixed.bottom-0').remove();
     }
     
+    // ===== IMAGE MODAL ZOOM FUNCTION =====
+    window.openImageModal = function(imageSrc, imageAlt) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        if (modal && modalImage) {
+            modalImage.src = imageSrc;
+            modalImage.alt = imageAlt || 'Imagem ampliada';
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+        }
+    }
+    
     console.log('🍊 Huella website loaded successfully!');
 });
 

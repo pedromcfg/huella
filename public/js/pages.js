@@ -288,6 +288,25 @@ async function renderAboutPage(data) {
             </div>
         </section>
 
+        <!-- Environmental Advantages Section -->
+        <section class="huella-section huella-section-alt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="huella-card p-5">
+                            <div class="text-center mb-4">
+                                <h2 class="huella-title">Vantagens Ambientais e Respeito aos Animais</h2>
+                            </div>
+                            <div class="mb-4" style="height: 2px; background: linear-gradient(90deg, transparent, var(--huella-green), transparent);"></div>
+                            <p class="huella-text" style="font-size: 1.1rem; line-height: 1.9; text-align: justify;">
+                                A produção plant-based usa menos água, terra e recursos, reduzindo a pegada ecológica, alinhado ao posicionamento "pegada reduzida" da Huella, uma vez que não contribuem para as indústrias do ovo e do leite, que fazem parte da indústria pecuária, um dos sectores mais poluentes e com maior impacto ambiental a nível mundial, visto que as bolachas são 100% plant-based, não contendo qualquer ingrediente de origem animal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Call to Action -->
         <section class="huella-section huella-section-orange">
             <div class="container">
@@ -486,42 +505,57 @@ async function renderCookiesPage(data) {
                     <div class="col-12 text-center mb-5">
                         <h2 class="huella-title">As Nossas Caixas</h2>
                         <p class="huella-text">Veja como são as nossas caixas, disponíveis em diferentes tamanhos</p>
+                        <p class="text-muted small"><i class="fas fa-mouse-pointer me-1"></i>Clique numa imagem para ampliar</p>
                     </div>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/1.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/1.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/1.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/2.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/2.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/2.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/3.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/3.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/3.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/4.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/4.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/4.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/5.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/5.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/5.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <div class="huella-card overflow-hidden">
-                            <img src="public/img/cookies/cookies/Caixa/6.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover;">
+                        <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('public/img/cookies/cookies/Caixa/6.jpg', 'Caixa Huella')">
+                            <img src="public/img/cookies/cookies/Caixa/6.jpg" alt="Caixa Huella" class="img-fluid w-100" style="height: 300px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Image Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content" style="background: transparent; border: none;">
+                    <div class="modal-header" style="border: none; padding-bottom: 0;">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="filter: brightness(0) invert(1);"></button>
+                    </div>
+                    <div class="modal-body p-0 text-center">
+                        <img id="modalImage" src="" alt="" class="img-fluid" style="max-height: 80vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Nutritional Information -->
         <section class="huella-section">
@@ -1294,13 +1328,118 @@ async function renderFAQPage(data) {
     `;
 }
 
-// Renderizar Reviews Page (simplificado)
+// Renderizar Reviews Page
 async function renderReviewsPage(data) {
-    return `
-        <div class="container py-5">
-            <h1>Avaliações</h1>
-            <p>Esta página será implementada em breve.</p>
+    // Função para gerar estrelas
+    const generateStars = (rating) => {
+        let starsHTML = '';
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                starsHTML += '<i class="fas fa-star text-warning"></i>';
+            } else {
+                starsHTML += '<i class="far fa-star text-warning"></i>';
+            }
+        }
+        return starsHTML;
+    };
+
+    // Placeholder para avaliações futuras (quando houver dados reais)
+    const reviewsHTML = `
+        <div class="col-12 text-center py-5">
+            <div class="huella-card p-5">
+                <i class="fas fa-comments text-huella-orange mb-3" style="font-size: 3rem;"></i>
+                <h3 class="huella-title mb-3">Avaliações dos Clientes</h3>
+                <p class="huella-text">As avaliações dos nossos clientes aparecerão aqui em breve.</p>
+                <p class="text-muted small">Esta secção será atualizada com comentários e classificações reais dos nossos clientes.</p>
+            </div>
         </div>
+    `;
+
+    // Espaço para imagens de clientes felizes (a adicionar posteriormente)
+    const customerImagesHTML = `
+        <div class="col-12 text-center py-4">
+            <h4 class="huella-title mb-4">Clientes Felizes</h4>
+            <p class="text-muted">Fotos dos nossos clientes satisfeitos serão adicionadas aqui em breve.</p>
+            <div class="row g-3 mt-3" id="customerImagesContainer">
+                <!-- Imagens de clientes felizes serão adicionadas aqui -->
+            </div>
+        </div>
+    `;
+
+    return `
+        <!-- Hero Section -->
+        <section class="huella-hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 text-center">
+                        <h1 class="huella-fade-in">Avaliações</h1>
+                        <p class="lead huella-fade-in">Veja o que os nossos clientes dizem sobre os nossos cookies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="huella-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="row">
+                            ${reviewsHTML}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Images Section -->
+        <section class="huella-section huella-section-alt">
+            <div class="container">
+                <div class="row">
+                    ${customerImagesHTML}
+                </div>
+            </div>
+        </section>
+
+        <!-- Add Review Section -->
+        <section class="huella-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="huella-card p-5">
+                            <h3 class="huella-title text-center mb-4">Deixe a Sua Avaliação</h3>
+                            <form id="reviewForm">
+                                <div class="mb-4">
+                                    <label class="huella-form-label">Nome *</label>
+                                    <input type="text" class="form-control huella-form-control" id="reviewerName" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="huella-form-label">Classificação *</label>
+                                    <div class="star-rating mb-2" id="starRating">
+                                        <span class="star" data-rating="1" style="font-size: 2rem; cursor: pointer; color: #ddd; margin-right: 5px;"><i class="far fa-star"></i></span>
+                                        <span class="star" data-rating="2" style="font-size: 2rem; cursor: pointer; color: #ddd; margin-right: 5px;"><i class="far fa-star"></i></span>
+                                        <span class="star" data-rating="3" style="font-size: 2rem; cursor: pointer; color: #ddd; margin-right: 5px;"><i class="far fa-star"></i></span>
+                                        <span class="star" data-rating="4" style="font-size: 2rem; cursor: pointer; color: #ddd; margin-right: 5px;"><i class="far fa-star"></i></span>
+                                        <span class="star" data-rating="5" style="font-size: 2rem; cursor: pointer; color: #ddd; margin-right: 5px;"><i class="far fa-star"></i></span>
+                                    </div>
+                                    <input type="hidden" id="selectedRating" value="0">
+                                    <small class="text-muted">Clique nas estrelas para classificar</small>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="huella-form-label">Comentário *</label>
+                                    <textarea class="form-control huella-form-control" id="reviewComment" rows="5" required placeholder="Partilhe a sua experiência..."></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-huella-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Avaliação
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     `;
 }
 

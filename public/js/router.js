@@ -279,20 +279,20 @@ const SITE_DATA = {
     },
     "values": [
       {
-        "title": "Ética",
-        "description": "Acredito que podemos criar produtos deliciosos sem causar sofrimento animal. Cada escolha que faço reflete os meus valores éticos e o respeito por todos os seres vivos."
-      },
-      {
         "title": "Sustentabilidade",
-        "description": "Comprometo-me com práticas que respeitam o planeta. Desde a escolha dos ingredientes até à embalagem, cada decisão é tomada com consciência ambiental."
+        "description": "Refere-se à pegada reduzida e ao respeito pelo ambiente, promovendo um estilo de vida consciente através de produtos sem origem animal."
       },
       {
-        "title": "Qualidade",
-        "description": "Não comprometo a qualidade. Cada cookie é feito com ingredientes premium, selecionados cuidadosamente para garantir o melhor sabor e textura."
+        "title": "Plant-based",
+        "description": "Todos os cookies são 100% veganos, livres de ovos e leite, apelando a quem busca alternativas saudáveis e cruelty-free."
       },
       {
-        "title": "Autenticidade",
-        "description": "A Huella é uma extensão de quem sou. Cada receita, cada sabor, cada decisão reflete os meus valores pessoais e a minha paixão pela culinária."
+        "title": "Artesanal",
+        "description": "Feitos à mão com imperfeições assumidas, enfatizando autenticidade, proximidade e qualidade tradicional."
+      },
+      {
+        "title": "Irresistível",
+        "description": "Posicionados como deliciosos e indulgentes, capazes de \"curar tudo\" e melhorar o humor, equilibrando prazer com consciência."
       }
     ],
     "veganReason": {
@@ -321,19 +321,19 @@ const SITE_DATA = {
   "faqs": [
     {
       "question": "Como posso fazer uma encomenda?",
-      "answer": "Pode visitar-nos na nossa loja física em São Mamede Infesta, Matosinhos, ou entrar em contacto connosco através dos nossos contactos."
+      "answer": "A encomenda pode ser realizada através do nosso site online ou via mensagem privada no Instagram."
     },
     {
-      "question": "Qual é o prazo de entrega?",
-      "answer": "As entregas são feitas em 3 dias úteis para todo o território nacional."
+      "question": "Qual o prazo de entrega?",
+      "answer": "O prazo de entrega pode variar conforme o dia em que realizou o pedido, variando ainda de fatores externos."
     },
     {
-      "question": "Os cookies são feitos com ingredientes naturais?",
-      "answer": "Sim! Utilizamos apenas ingredientes premium e naturais, sem conservantes artificiais."
+      "question": "Fazem envios?",
+      "answer": "Sim, fazemos. O cliente paga os custos do envio, via CTT, dependendo do tamanho do pedido."
     },
     {
-      "question": "Posso personalizar uma encomenda?",
-      "answer": "Claro! Entre em contacto connosco para discutir encomendas personalizadas e especiais."
+      "question": "Posso personalizar a encomenda?",
+      "answer": "Sim, deve ser conversado individualmente para analisar cada caso."
     }
   ],
   "shipping": {
@@ -539,6 +539,86 @@ function initializePageScripts(route) {
         setTimeout(() => {
             setupContactForm();
         }, 100);
+    }
+    
+    if (route === '/reviews') {
+        // Aguardar um pouco para garantir que o DOM foi atualizado
+        setTimeout(() => {
+            setupReviewsPage();
+        }, 100);
+    }
+}
+
+// Função para configurar a página de avaliações
+function setupReviewsPage() {
+    // Sistema de estrelas interativo
+    const stars = document.querySelectorAll('.star[data-rating]');
+    const selectedRatingInput = document.getElementById('selectedRating');
+    let currentRating = 0;
+    let hoverRating = 0;
+
+    if (stars.length > 0 && selectedRatingInput) {
+        stars.forEach(star => {
+            star.addEventListener('mouseenter', function() {
+                hoverRating = parseInt(this.getAttribute('data-rating'));
+                updateStarDisplay(hoverRating);
+            });
+
+            star.addEventListener('mouseleave', function() {
+                updateStarDisplay(currentRating);
+            });
+
+            star.addEventListener('click', function() {
+                currentRating = parseInt(this.getAttribute('data-rating'));
+                selectedRatingInput.value = currentRating;
+                updateStarDisplay(currentRating);
+            });
+        });
+    }
+
+    function updateStarDisplay(rating) {
+        stars.forEach((star, index) => {
+            const starRating = index + 1;
+            const icon = star.querySelector('i');
+            if (starRating <= rating) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                star.style.color = '#ffc107';
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                star.style.color = '#ddd';
+            }
+        });
+    }
+
+    // Formulário de avaliação
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewerName').value;
+            const rating = parseInt(selectedRatingInput.value);
+            const comment = document.getElementById('reviewComment').value;
+
+            if (!name || !rating || rating === 0 || !comment) {
+                alert('Por favor, preencha todos os campos e selecione uma classificação.');
+                return;
+            }
+
+            // Aqui poderia enviar para um backend ou armazenar localmente
+            console.log('Avaliação submetida:', { name, rating, comment });
+            
+            alert('Obrigado pela sua avaliação! Em breve, as avaliações serão exibidas publicamente.');
+            
+            // Limpar formulário
+            reviewForm.reset();
+            currentRating = 0;
+            hoverRating = 0;
+            selectedRatingInput.value = 0;
+            updateStarDisplay(0);
+        });
     }
 }
 
