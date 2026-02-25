@@ -419,6 +419,35 @@ body {
     color: var(--huella-white);
 }
 
+/* Galeria com imagens de formatos diferentes (ex: Dia dos Namorados) */
+.huella-gallery-mixed .huella-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.huella-gallery-mixed .huella-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.huella-gallery-mixed .huella-gallery-img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.huella-gallery-mixed .huella-card:hover .huella-gallery-img {
+    transform: scale(1.05);
+}
+@media (min-width: 768px) {
+    .huella-gallery-mixed .huella-gallery-img {
+        height: 260px;
+    }
+}
+@media (min-width: 992px) {
+    .huella-gallery-mixed .huella-gallery-img {
+        height: 240px;
+    }
+}
+
 /* ===== TYPOGRAPHY ===== */
 .huella-title {
     color: var(--huella-green);

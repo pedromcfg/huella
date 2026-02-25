@@ -208,8 +208,15 @@ const SITE_DATA = {
           "80g": { "price": "3.25€", "priceValue": 3.25 }
         },
         "hasWeightOptions": true,
-        "image": "public/img/cookies/7.jpg",
-        "images": ["public/img/cookies/7.jpg"],
+        "image": "public/img/cookies/cookies/redVelvetAvelas/1.jpg",
+        "images": [
+          "public/img/cookies/cookies/redVelvetAvelas/1.jpg",
+          "public/img/cookies/cookies/redVelvetAvelas/2.jpg",
+          "public/img/cookies/cookies/redVelvetAvelas/3.jpg",
+          "public/img/cookies/cookies/redVelvetAvelas/4.jpg",
+          "public/img/cookies/cookies/redVelvetAvelas/5.jpg",
+          "public/img/cookies/cookies/redVelvetAvelas/6.jpg"
+        ],
         "ingredients": ["🍰 Red Velvet", "🌰 Avelãs Tostadas", "🍫 Chocolate"],
         "category": "especial",
         "season": "Edição Especial",
@@ -229,8 +236,15 @@ const SITE_DATA = {
           "80g": { "price": "3.25€", "priceValue": 3.25 }
         },
         "hasWeightOptions": true,
-        "image": "public/img/cookies/8.jpg",
-        "images": ["public/img/cookies/8.jpg"],
+        "image": "public/img/cookies/cookies/avelasChocolate/1.jpg",
+        "images": [
+          "public/img/cookies/cookies/avelasChocolate/1.jpg",
+          "public/img/cookies/cookies/avelasChocolate/2.jpg",
+          "public/img/cookies/cookies/avelasChocolate/3.jpg",
+          "public/img/cookies/cookies/avelasChocolate/4.jpg",
+          "public/img/cookies/cookies/avelasChocolate/5.jpg",
+          "public/img/cookies/cookies/avelasChocolate/6.jpg"
+        ],
         "ingredients": ["🌰 Avelãs", "🍫 Cacau", "🍫 Chocolate"],
         "category": "especial",
         "season": "Edição Especial",
@@ -771,4 +785,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Exportar funções necessárias
 window.navigate = navigate;
 window.getSiteData = loadSiteData;
+
 

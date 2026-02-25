@@ -1013,7 +1013,24 @@ document.addEventListener('DOMContentLoaded', function() {
             bsModal.show();
         }
     }
-    
-    console.log('🍊 Huella website loaded successfully!');
+    // Global because product page HTML uses inline onclick="changeMainImage(...)"
+    window.changeMainImage = function(imageSrc, element) {
+        const mainImage = document.getElementById('mainProductImage');
+        if (!mainImage) return;
+
+        mainImage.src = imageSrc;
+        mainImage.setAttribute('onclick', "openImageModal('" + String(imageSrc).replace(/'/g, "\\'") + "')");
+
+        document.querySelectorAll('.product-thumbnails .img-thumbnail').forEach((img) => {
+            img.style.border = '2px solid #ddd';
+            img.classList.remove('active');
+        });
+
+        if (element) {
+            element.style.border = '2px solid var(--huella-orange)';
+            element.classList.add('active');
+        }
+    };
+    console.log('Huella website loaded successfully!');
 });
 
