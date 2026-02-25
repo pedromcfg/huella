@@ -160,8 +160,14 @@ const SITE_DATA = {
           "80g": { "price": "2.50€", "priceValue": 2.50 }
         },
         "hasWeightOptions": true,
-        "image": "public/img/cookies/5.jpg",
-        "images": ["public/img/cookies/5.jpg"],
+        "image": "public/img/cookies/cookies/graoBico/1.jpg",
+        "images": [
+          "public/img/cookies/cookies/graoBico/1.jpg",
+          "public/img/cookies/cookies/graoBico/2.jpg",
+          "public/img/cookies/cookies/graoBico/3.jpg",
+          "public/img/cookies/cookies/graoBico/4.jpg",
+          "public/img/cookies/cookies/graoBico/5.jpg"
+        ],
         "ingredients": ["🍫 Pepitas de Chocolate", "🌰 Grão-de-Bico", "🌿 Canela", "🧂 Sal"],
         "category": "fixo",
         "available": true,
