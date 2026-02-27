@@ -1330,15 +1330,26 @@ async function renderReviewsPage(data) {
     `;
 
     // Espaço para imagens de clientes felizes (a adicionar posteriormente)
-    const customerImagesHTML = `
-        <div class="col-12 text-center py-4">
-            <h4 class="huella-title mb-4">Clientes Felizes</h4>
-            <p class="text-muted">Fotos dos nossos clientes satisfeitos serão adicionadas aqui em breve.</p>
-            <div class="row g-3 mt-3" id="customerImagesContainer">
-                <!-- Imagens de clientes felizes serão adicionadas aqui -->
+    const customerImageCards = Array.from({ length: 8 }, (_, i) => {
+    const imgPath = `public/img/clientesFelizes/${i + 1}.jpg`;
+    return `
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('${imgPath}', 'Cliente Feliz ${i + 1}')">
+                <img src="${imgPath}" alt="Cliente Feliz ${i + 1}" class="img-fluid w-100" style="height: 260px; object-fit: cover;">
             </div>
         </div>
     `;
+}).join('');
+
+const customerImagesHTML = `
+    <div class="col-12 text-center py-4">
+        <h4 class="huella-title mb-4">Clientes Felizes</h4>
+        <p class="text-muted">Momentos reais de quem já provou os nossos cookies.</p>
+        <div class="row g-3 mt-3" id="customerImagesContainer">
+            ${customerImageCards}
+        </div>
+    </div>
+`;
 
     return `
         <!-- Hero Section -->
