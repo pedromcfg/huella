@@ -1331,11 +1331,12 @@ async function renderReviewsPage(data) {
 
     // Espaço para imagens de clientes felizes (a adicionar posteriormente)
     const customerImageCards = Array.from({ length: 8 }, (_, i) => {
-    const imgPath = `public/img/clientesFelizes/${i + 1}.jpg`;
+    const imgBasePath = `public/img/clientesFelizes/${i + 1}`;
+    const imgPath = `${imgBasePath}.jpg`;
     return `
         <div class="col-6 col-md-4 col-lg-3">
-            <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal('${imgPath}', 'Cliente Feliz ${i + 1}')">
-                <img src="${imgPath}" alt="Cliente Feliz ${i + 1}" class="img-fluid w-100" style="height: 260px; object-fit: cover;">
+            <div class="huella-card overflow-hidden" style="cursor: pointer;" onclick="openImageModal(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Cliente Feliz ${i + 1}')">
+                <img src="${imgPath}" alt="Cliente Feliz ${i + 1}" class="img-fluid w-100" style="height: 260px; object-fit: cover;" onerror="if(!this.dataset.tryUpper){this.dataset.tryUpper='1';this.src='${imgBasePath}.JPG';}else if(!this.dataset.tryJpeg){this.dataset.tryJpeg='1';this.src='${imgBasePath}.jpeg';}else if(!this.dataset.tryJpegUpper){this.dataset.tryJpegUpper='1';this.src='${imgBasePath}.JPEG';}else if(!this.dataset.tryPng){this.dataset.tryPng='1';this.src='${imgBasePath}.png';}else if(!this.dataset.tryPngUpper){this.dataset.tryPngUpper='1';this.src='${imgBasePath}.PNG';}">
             </div>
         </div>
     `;
